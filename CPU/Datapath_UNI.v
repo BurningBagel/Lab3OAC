@@ -51,7 +51,7 @@ reg  [31:0] PC;
 wire [31:0] wPC, wPC4;
 wire [ 4:0] wRs1, wRs2, wRd;
 wire [31:0] wRead1, wRead2, wFPRead1, wFPRead2, wRegWrite;
-wire [31:0] wOrigAULA,wOrigBULA,wALUresult;
+wire [31:0] wOrigAULA,wOrigBULA,wALUresult,wOrigFPAULA,wOrigFPBULA,wFPALUresult;
 wire [31:0] wiPC;
 wire 			wBranch;
 wire [31:0] wBranchPC;
@@ -81,6 +81,7 @@ assign mFPRead1         = wFPRead1;
 assign mFPRead2         = wFPRead2;
 assign mRegWrite			= wRegWrite;
 assign mULA					= wALUresult;
+assign mFPULA           = wFPULAresult;
 assign mDebug				= 32'h000ACE10;	// Ligar onde for preciso	
 assign mRegDisp			= wRegDisp;
 assign mVGARead			= wVGARead;
@@ -160,13 +161,11 @@ ALU ALU0 (
 // FPALU <<<<<----------
 ifdef RV32IMF
 FPALU fpalu0(
-	.iclock(ICLK)
-	
-
-
-
-
-
+	.iclock(ICLK),
+	.iA(wOrigFPAULA),
+	.iB(wOrigFPBULA),
+	.oResult(wFPALUresult),
+	.oZero()
 );
 
 Registers REGISTERS1(
@@ -184,7 +183,7 @@ Registers REGISTERS1(
    .oRegDisp(wRegDisp),                // Reg display
    .iVGASelect(wVGASelect),            // para mostrar Regs na tela
    .oVGARead(wVGARead)                 // para mostrar Regs na tela
-)
+);
 endif
 	
 // Unidade de controle de escrita 
