@@ -787,3 +787,7 @@ set_global_assignment -name VECTOR_WAVEFORM_FILE Testes/Waveform2.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE Memory_Interface.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE MemBlock.vwf
 set_global_assignment -name VECTOR_WAVEFORM_FILE DataMemory_Interface.vwf
+set_global_assignment -name QIP_FILE CPU/cvt_wu_s.qip
+set_global_assignment -name SIP_FILE CPU/cvt_wu_s.sip
+set_global_assignment -name QIP_FILE CPU/cvt_s_wu.qip
+set_global_assignment -name SIP_FILE CPU/cvt_s_wu.sip
