@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="fmax_sim/fmax.vo" type="VERILOG" />
+ <topLevel name="fmax" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

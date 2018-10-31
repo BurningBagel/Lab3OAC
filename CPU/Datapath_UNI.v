@@ -161,6 +161,7 @@ ALU ALU0 (
 // FPALU <<<<<----------
 ifdef RV32IMF
 FPALU fpalu0(
+	.icontrol(wCALUControl),
 	.iclock(ICLK),
 	.iA(wOrigFPAULA),
 	.iB(wOrigFPBULA),

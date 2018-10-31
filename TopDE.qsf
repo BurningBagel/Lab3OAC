@@ -791,3 +791,7 @@ set_global_assignment -name QIP_FILE CPU/cvt_wu_s.qip
 set_global_assignment -name SIP_FILE CPU/cvt_wu_s.sip
 set_global_assignment -name QIP_FILE CPU/cvt_s_wu.qip
 set_global_assignment -name SIP_FILE CPU/cvt_s_wu.sip
+set_global_assignment -name QIP_FILE fmax.qip
+set_global_assignment -name SIP_FILE fmax.sip
+set_global_assignment -name QIP_FILE fmin.qip
+set_global_assignment -name SIP_FILE fmin.sip

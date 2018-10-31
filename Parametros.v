@@ -55,7 +55,11 @@ parameter
 	FOPCLT      = 4'd8,
 	FOPCLE      = 4'd9,
 	FOPCVTSW    = 4'd10,
-	FOPCVTWS    = 4'd11,		
+	FOPCVTWS    = 4'd11,
+	FOPCVTSWU   = 4'd12,
+	FOPCVTWSU   = 4'd13,
+	FOPMAX		= 4'd14,
+	FOPMIN		= 4'd15,
 
 
 /* Campo OpCode */
@@ -69,7 +73,10 @@ parameter
 	OPC_JALR       	= 7'b1100111,
 	OPC_JAL        	= 7'b1101111,
 	OPC_SYS				= 7'b1110111,
-	OPC_URET				= 7'b1110011,	
+	OPC_URET				= 7'b1110011,
+	OPC_FOPR				= 7'b1010011,
+	OPC_FLW				= 7'b0000111,
+	OPC_FSW				= 7'b0100111,
 
 /* Campo Funct7 */
 	FUNCT7_ADD			= 7'b0000000,
@@ -84,7 +91,24 @@ parameter
 	FUNCT7_AND			= 7'b0000000,
 	FUNCT7_MULDIV	   = 7'b0000001,
 	FUNCT7_ECALL		= 7'b0000000,
-	FUNCT7_URET			= 7'b0010000,	
+	FUNCT7_URET			= 7'b0010000,
+
+	FUNCT7_FADD			= 7'b0000000,
+	FUNCT7_FSUB			= 7'b0000100,
+	FUNCT7_FCVT_S_W	= 7'b1101000,
+	FUNCT7_FCVT_W_S	= 7'b1100000,
+	FUNCT7_FCVT_S_WU	= 7'b1101000,
+	FUNCT7_FCVT_W_SU	= 7'b1100000,
+	FUNCT7_FDIV			= 7'b0001100,
+	FUNCT7_FEQ			= 7'b1010000,
+	FUNCT7_FLT			= 7'b1010000,
+	FUNCT7_FMAX			= 7'b0010100,
+	FUNCT7_FMIN			= 7'b0010100,
+	FUNCT7_FMUL			= 7'b0001000,
+	FUNCT7_FSGNJ		= 7'b0010000,
+	FUNCT7_FSGNJN		= 7'b0010000,
+	FUNCT7_FSGNJX		= 7'b0010000,
+	FUNCT7_SQRT			= 7'b0101100,
 
 /* Campo Funct3 */
 	FUNCT3_LB			= 3'b000,
@@ -127,7 +151,19 @@ parameter
 	FUNCT3_DIVU			= 3'b101,
 	FUNCT3_REM			= 3'b110,
 	FUNCT3_REMU			= 3'b111,
-
+	
+	FUNCT3_FEQ			= 3'b010,
+	FUNCT3_FLE			= 3'b000,
+	FUNCT3_FLT			= 3'b001,
+	FUNCT3_MAX			= 3'b001,
+	FUNCT3_MIN			= 3'b000,
+	FUNCT3_FMV_W_S		= 3'b000,
+	FUNCT3_FMV_S_W		= 3'b000,
+	FUNCT3_SGNJ			= 3'b000,
+	FUNCT3_SGNJN		= 3'b001,
+	FUNCT3_SGNJX		= 3'b010,
+	FUNCT3_FSW			= 3'b010,
+	FUNCT3_FLW			= 3'b010,
 
 /* ADDRESS MACROS *****************************************************************************************************/
 
