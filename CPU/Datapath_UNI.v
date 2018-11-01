@@ -68,6 +68,10 @@ wire [ 1:0] wCMem2Reg;
 wire 			wCMemRead, wCMemWrite;
 wire [ 4:0] wCALUControl;
 
+ifdef RVIMF
+wire [4:0] wCFPALUControl;
+endif
+
 
 // Sinais de monitoramento e Debug
 wire [31:0] wRegDisp, wVGARead;
@@ -232,6 +236,9 @@ Control_UNI CONTROL0 (
 	 .oMemRead(wCMemRead),
     .oALUControl(wCALUControl),
     .oOrigPC(wCOrigPC)
+	 ifdef RVIMF
+	 ,.oFPALUControl(wCFPALUControl)
+	 endif
 	);
 
 

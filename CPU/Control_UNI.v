@@ -12,6 +12,9 @@
     output    	 	oOrigAULA, oOrigBULA, oRegWrite, oMemWrite, oMemRead,
 	 output [1:0]	oMem2Reg, oOrigPC,
 	 output [4:0]  oALUControl
+ifdef RVIMF
+	 ,output [4:0]  oFPALUControl
+endif
 );
 
 
@@ -229,6 +232,7 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
         end
+		
 	endcase
 
 endmodule
