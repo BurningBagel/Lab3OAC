@@ -159,7 +159,7 @@ ALU ALU0 (
 	);
 
 // FPALU <<<<<----------
-ifdef RV32IMF
+`ifdef RV32IMF
 FPALU fpalu0(
 	.icontrol(wCALUControl),
 	.iclock(ICLK),
@@ -170,7 +170,7 @@ FPALU fpalu0(
 );
 
 Registers REGISTERS1(
-	.iclock(ICLK)
+	.iclock(ICLK),
 	.iRST(iRST),
    .iReadRegister1(wRs1),
    .iReadRegister2(wRs2),
@@ -185,10 +185,10 @@ Registers REGISTERS1(
    .iVGASelect(wVGASelect),            // para mostrar Regs na tela
    .oVGARead(wVGARead)                 // para mostrar Regs na tela
 );
-endif
+`endif
 	
 // Unidade de controle de escrita 
-wire [31:0] wMemDataWrite,wReadData;
+wire [31:0] wMemDataWrite, wReadData;
 wire [ 3:0] wMemEnable;
 
 MemStore MEMSTORE0 (
