@@ -306,6 +306,26 @@ always @(*)
 		default:   wOrigFPAULA <= ZERO;
 	endcase
 
+always @(*)
+	case(FPFloatToInt)
+		1'b0:		  wRegWrite <= wRegWrite;
+		1'b1:      wRegWrite <= wFPALUresult;
+		default:   wRegWrite <= ZERO;
+	endcase
+
+always @(*)
+	case(FPWriteSrc)
+		1'b0:      wFPRegWrite <= wFPALUresult;
+		1'b0:      wFPRegWrite <= wRegWrite;
+		default:   wFPRegWrite <= ZERO;
+	endcase
+
+always @(*)
+	case(oFPToMem)
+		1'b0:      DwWriteData <= wRead2;
+		1'b1:      DwWriteData <= wFPALUresult;
+		default:   DwWriteData <= ZERO;
+	endcase
 
 
 // ****************************************************** 
