@@ -115,6 +115,39 @@ always @(*)
 				ounderflow = 1'b0;
 				oCompResult = 1'b0;
 			end
+			
+			FOPSIGNJ:		//signj #TODO
+			begin
+				oresult[31] = idatab[31]; //f1 = sinalde(b)+valorde(a)
+				oresult[30:0] = idataa[30:0];
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
+			
+			FOPSIGNJN:		//signjn #TODO
+			begin
+				oresult[31] = ~idatab[31]; //f1 = nega(sinalde(b))+valorde(a)
+				oresult[30:0] = idataa[30:0];
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
+			
+			FOPSIGNJX:		//signjx #TODO
+			begin
+				oresult[31] = idataa[31] ^ idatab[31]; //f1 = xor(sinalde(a),sinalde(b))+valorde(a)
+				oresult[30:0] = idataa[30:0];
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
 
 			FOPCEQ:		//c_eq
 			begin
