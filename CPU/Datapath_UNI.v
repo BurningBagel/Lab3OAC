@@ -298,6 +298,14 @@ always @(*)
 	endcase
 
 
+// Multiplexadores FP
+always @(*)
+	case(FPIntToFloat)
+		1'b0:		  wOrigFPAULA <= wRead2;
+		1'b1:		  wOrigFPAULA <= wFPRead1;
+		default:   wOrigFPAULA <= ZERO;
+	endcase
+
 
 
 // ****************************************************** 
