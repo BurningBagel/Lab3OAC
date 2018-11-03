@@ -22,8 +22,8 @@ module Datapath_UNI (
     output wire [31:0] mVGARead,
 	 output wire [31:0] mRead1,
 	 output wire [31:0] mRead2,
-	 output wire [31:0] mFPRead1,
-	 output wire [31:0] mFPRead2,
+	 //output wire [31:0] mFPRead1,
+	 //output wire [31:0] mFPRead2,
 	 output wire [31:0] mRegWrite,
 	 output wire [31:0] mULA,	 
 
@@ -50,8 +50,8 @@ module Datapath_UNI (
 reg  [31:0] PC;
 wire [31:0] wPC, wPC4;
 wire [ 4:0] wRs1, wRs2, wRd;
-wire [31:0] wRead1, wRead2, wFPRead1, wFPRead2, wRegWrite;
-wire [31:0] wOrigAULA,wOrigBULA,wALUresult,wOrigFPAULA,wOrigFPBULA,wFPALUresult;
+wire [31:0] wRead1, wRead2, wRegWrite;
+wire [31:0] wOrigAULA,wOrigBULA,wALUresult;
 wire [31:0] wiPC;
 wire 			wBranch;
 wire [31:0] wBranchPC;
@@ -61,12 +61,20 @@ wire [ 2:0] wFunct3;
 
 // sinais do controle 
 wire        wCRegWrite;
-wire			wCFPRegWrite;
 wire 		   wCOrigAULA,wCOrigBULA;
 wire [ 1:0] wCOrigPC;
 wire [ 1:0] wCMem2Reg;
 wire 			wCMemRead, wCMemWrite;
 wire [ 4:0] wCALUControl;
+
+// fios FP
+ifdef RVIMF
+wire [4:0]  wCFPALUControl;
+wire [31:0] wFPRead1, wFPRead2, wFPRegWrite;
+wire [31:0] wOrigFPAULA,wOrigFPBULA,wFPALUresult;
+
+wire			wCFPRegWrite;
+endif
 
 
 // Sinais de monitoramento e Debug
@@ -77,11 +85,11 @@ assign mPC					= wPC;
 assign mInstr				= wInstr;
 assign mRead1				= wRead1;
 assign mRead2				= wRead2;
-assign mFPRead1         = wFPRead1;
-assign mFPRead2         = wFPRead2;
+//assign mFPRead1         = wFPRead1;
+//assign mFPRead2         = wFPRead2;
 assign mRegWrite			= wRegWrite;
 assign mULA					= wALUresult;
-assign mFPULA           = wFPULAresult;
+//assign mFPULA           = wFPULAresult;
 assign mDebug				= 32'h000ACE10;	// Ligar onde for preciso	
 assign mRegDisp			= wRegDisp;
 assign mVGARead			= wVGARead;
@@ -168,13 +176,14 @@ FPALU fpalu0(
 	.oResult(wFPALUresult),
 	.oZero()
 );
-
+// FPREGISTERS
 Registers REGISTERS1(
 	.iclock(ICLK),
 	.iRST(iRST),
    .iReadRegister1(wRs1),
    .iReadRegister2(wRs2),
    .iWriteRegister(wRd),
+	.iWriteData(wFPRegWrite),
 	.iRegWrite(wCFPRegWrite),
 	.oReadData1(wFPRead1),
 	.oReadData2(wFPRead2),
@@ -232,6 +241,9 @@ Control_UNI CONTROL0 (
 	 .oMemRead(wCMemRead),
     .oALUControl(wCALUControl),
     .oOrigPC(wCOrigPC)
+	 ifdef RVIMF
+	 ,.oFPALUControl(wCFPALUControl)
+	 endif
 	);
 
 
