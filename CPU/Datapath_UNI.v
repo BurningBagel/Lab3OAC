@@ -67,6 +67,8 @@ wire [ 1:0] wCMem2Reg;
 wire 			wCMemRead, wCMemWrite;
 wire [ 4:0] wCALUControl;
 
+wire [31:0] wFPWrite;
+
 // fios FP
 `ifdef RVIMF
 wire [4:0]  wCFPALUControl;
@@ -75,11 +77,12 @@ wire [31:0] wOrigFPAULA,wOrigFPBULA,wFPALUresult;
 
 wire			wCFPRegWrite;
 
-wire [31:0] wFPWrite; // fio que recebe saída do MUX depois da memória de dados
+// wire [31:0] wFPWrite; // fio que recebe saída do MUX depois da memória de dados
 wire [31:0] wFPStore; // saída do Mux para escolher entre wRead2 e saída da FPULA
 
 `endif
 
+assign wFPWrite = wRegWrite;
 
 // Sinais de monitoramento e Debug
 wire [31:0] wRegDisp, wVGARead;
@@ -142,7 +145,7 @@ Registers REGISTERS0 (
     .iReadRegister1(wRs1),
     .iReadRegister2(wRs2),
     .iWriteRegister(wRd),
-    .iWriteData(wRegWrite),
+    .iWriteData(wFPWrite),
     .iRegWrite(wCRegWrite),
     .oReadData1(wRead1),
     .oReadData2(wRead2),
