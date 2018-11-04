@@ -67,15 +67,22 @@ wire [ 1:0] wCMem2Reg;
 wire 			wCMemRead, wCMemWrite;
 wire [ 4:0] wCALUControl;
 
+wire [31:0] wFPWrite;
+
 // fios FP
-ifdef RVIMF
+`ifdef RVIMF
 wire [4:0]  wCFPALUControl;
 wire [31:0] wFPRead1, wFPRead2, wFPRegWrite;
 wire [31:0] wOrigFPAULA,wOrigFPBULA,wFPALUresult;
 
 wire			wCFPRegWrite;
-endif
 
+// wire [31:0] wFPWrite; // fio que recebe saída do MUX depois da memória de dados
+wire [31:0] wFPStore; // saída do Mux para escolher entre wRead2 e saída da FPULA
+
+`endif
+
+assign wFPWrite = wRegWrite;
 
 // Sinais de monitoramento e Debug
 wire [31:0] wRegDisp, wVGARead;
@@ -138,7 +145,7 @@ Registers REGISTERS0 (
     .iReadRegister1(wRs1),
     .iReadRegister2(wRs2),
     .iWriteRegister(wRd),
-    .iWriteData(wRegWrite),
+    .iWriteData(wFPWrite),
     .iRegWrite(wCRegWrite),
     .oReadData1(wRead1),
     .oReadData2(wRead2),
@@ -200,10 +207,13 @@ Registers REGISTERS1(
 wire [31:0] wMemDataWrite, wReadData;
 wire [ 3:0] wMemEnable;
 
+// caso a FPULA não esteja ativa, o wFPStore irá sempre assumir o valor de wRead2
+assign wFPStore          = wRead2;
+
 MemStore MEMSTORE0 (
     .iAlignment(wALUresult[1:0]),
     .iFunct3(wFunct3),
-    .iData(wRead2),
+    .iData(wFPStore),
     .oData(wMemDataWrite),
     .oByteEnable(wMemEnable),
     .oException()
@@ -216,6 +226,7 @@ assign DwByteEnable     = wMemEnable;
 assign DwWriteData      = wMemDataWrite;
 assign wReadData        = DwReadData;
 assign DwAddress        = wALUresult;
+
 
 // Unidade de controle de leitura 
 wire [31:0] wMemLoad;
@@ -298,7 +309,10 @@ always @(*)
 	endcase
 
 
+`ifdef RV32IMF
 // Multiplexadores FP
+assign wFPWrite = wRegWrite;
+
 always @(*)
 	case(FPIntToFloat)
 		1'b0:		  wOrigFPAULA <= wRead2;
@@ -308,7 +322,7 @@ always @(*)
 
 always @(*)
 	case(FPFloatToInt)
-		1'b0:		  wRegWrite <= wRegWrite;
+		1'b0:		  wRegWrite <= wFPWrite;
 		1'b1:      wRegWrite <= wFPALUresult;
 		default:   wRegWrite <= ZERO;
 	endcase
@@ -322,12 +336,12 @@ always @(*)
 
 always @(*)
 	case(oFPToMem)
-		1'b0:      DwWriteData <= wRead2;
-		1'b1:      DwWriteData <= wFPALUresult;
-		default:   DwWriteData <= ZERO;
+		1'b0:      wFPStore <= wRead2;
+		1'b1:      wFPStore <= wFPALUresult;
+		default:   wFPStore <= ZERO;
 	endcase
 
-
+`endif
 // ****************************************************** 
 // A cada ciclo de clock					  						 
 
