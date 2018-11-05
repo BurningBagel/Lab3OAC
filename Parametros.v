@@ -12,7 +12,7 @@
 `ifdef RV32IM
   `define RV32M
 `elsif RV32IMF
-  `define RV32M
+  `define RV32IMF
 `endif
 
 /* Parametros Gerais*/
@@ -63,6 +63,8 @@ parameter
 	FOPSGNJ		= 5'd16,
 	FOPSGNJN		= 5'd17,
 	FOPSGNJX		= 5'd18,
+	FOPMVSX		= 5'd19,
+	FOPMVXS		= 5'd20,
 
 
 /* Campo OpCode */
@@ -101,7 +103,7 @@ parameter
 	FUNCT7_FCVT_S_W	= 7'b1101000,
 	FUNCT7_FCVT_W_S	= 7'b1100000,
 	FUNCT7_FCVT_S_WU	= 7'b1101000,
-	FUNCT7_FCVT_W_SU	= 7'b1100000,
+	FUNCT7_FCVT_WU_S	= 7'b1100000,
 	FUNCT7_FDIV			= 7'b0001100,
 	FUNCT7_FEQ			= 7'b1010000,
 	FUNCT7_FLT			= 7'b1010000,
@@ -112,6 +114,8 @@ parameter
 	FUNCT7_FSGNJN		= 7'b0010000,
 	FUNCT7_FSGNJX		= 7'b0010000,
 	FUNCT7_SQRT			= 7'b0101100,
+	FUNCT7_FMVSX		= 7'b1111000,
+	FUNCT7_FMVXS		= 7'b1110000,
 
 /* Campo Funct3 */
 	FUNCT3_LB			= 3'b000,
@@ -167,6 +171,7 @@ parameter
 	FUNCT3_SGNJX		= 3'b010,
 	FUNCT3_FSW			= 3'b010,
 	FUNCT3_FLW			= 3'b010,
+	FUNCT3_FMV			= 3'b000,
 
 /* ADDRESS MACROS *****************************************************************************************************/
 
