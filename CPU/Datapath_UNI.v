@@ -335,7 +335,7 @@ always @(*)
 always @(*)
 	case(oFPToMem)
 		1'b0:      wFPStore <= wRead2;
-		1'b1:      wFPStore <= wFPALUresult;
+		1'b1:      wFPStore <= wFPRead1;
 		default:   wFPStore <= ZERO;
 	endcase
 

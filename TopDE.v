@@ -18,8 +18,11 @@
 
 /*   ******************  Historico ***********************
 	Colocar os nomes e matriculas dos autores
-
-
+ 
+	Jader Martins				-	14/0168915
+	João Marcos					-	15/0132131
+	Luiz Duarte					-	14/0151958
+	Vinícius Costa e Silva 	- 	15/0052138
 	
 	
 

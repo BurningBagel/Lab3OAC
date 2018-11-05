@@ -12,7 +12,7 @@
 `ifdef RV32IM
   `define RV32M
 `elsif RV32IMF
-  `define RV32IMF
+  `define RV32M
 `endif
 
 /* Parametros Gerais*/
