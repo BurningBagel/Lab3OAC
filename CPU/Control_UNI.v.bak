@@ -332,53 +332,7 @@ always @(*)
 				oFPWriteSrc		<= 1'b0;
 				`endif
 			end
-`ifdef RVIMF
-		OPC_FOPR:
-			begin
-				
-			end
-			
-		OPC_FLW:
-			begin
-				oOrigAULA  	<= 1'b0; //R[rs1]
-				oOrigBULA 	<= 1'b1; //imediato
-				oRegWrite	<= 1'b0; 
-				oMemWrite	<= 1'b0; 
-				oMemRead 	<= 1'b1; 
-				oALUControl	<= OPADD; 
-				oMem2Reg 	<= 2'b00; //don't care			oq deve ser escrito no banco de reg: 00=resultado da ula, 01=pc+4, 10=memoria.
-				oOrigPC		<= 2'b00; //calcula qual vai ser o proximo PC, 00=pc+4.
-				
-				
-				oFPALUControl 	<= OPNULL;
-				oFPToMem			<= 1'b0; //don't care
-				oFPFloatToInt	<= 1'b0; //don't care
-				oFPIntToFloat	<= 1'b0; //don't care
-				oFPEscreveReg	<= 1'b1;
-				oFPWriteSrc		<= 1'b1; //se vai escrever a partir da fpula ou da memoria
-			end
-			
-		OPC_FSW:
-			begin
-				oOrigAULA  	<= 1'b0; //R[rs1]
-				oOrigBULA 	<= 1'b1; //imediato
-				oRegWrite	<= 1'b0; 
-				oMemWrite	<= 1'b1; 
-				oMemRead 	<= 1'b0; 
-				oALUControl	<= OPADD; 
-				oMem2Reg 	<= 2'b00; //don't care			oq deve ser escrito no banco de reg: 00=resultado da ula, 01=pc+4, 10=memoria.
-				oOrigPC		<= 2'b00; //calcula qual vai ser o proximo PC, 00=pc+4.
-				
-				
-				oFPALUControl 	<= OPNULL;
-				oFPToMem			<= 1'b1;
-				oFPFloatToInt	<= 1'b0; //don't care
-				oFPIntToFloat	<= 1'b0; //don't care
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0; //don't care		se vai escrever a partir da fpula ou da memoria
-				
-			end
-`endif
+      
 		default: // instrucao invalida
         begin
 				oOrigAULA  	<= 1'b0;
