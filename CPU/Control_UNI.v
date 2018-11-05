@@ -335,7 +335,60 @@ always @(*)
 `ifdef RVIMF
 		OPC_FOPR:
 			begin
-				
+				oOrigAULA  	<= 1'b0;
+				oOrigBULA 	<= 1'b0;
+				oRegWrite	<= 1'b1;
+				oMemWrite	<= 1'b0; 
+				oMemRead 	<= 1'b0;
+				oALUControl	<= OPNULL;	
+				oMem2Reg 	<= 2'b00;
+				oOrigPC		<= 2'b00;
+
+				oFPToMem			<= 1'b0;
+				oFPFloatToInt	<= 1'b0;
+				oFPIntToFloat	<= 1'b0;
+				oFPEscreveReg	<= 1'b0;
+				oFPWriteSrc		<= 1'b0;
+			
+				case (Funct7)
+					FUNCT7_FADD: 
+					FUNCT7_FSUB:
+					FUNCT7_FCVT_S_W:
+					FUNCT7_FCVT_W_S:
+					FUNCT7_FCVT_S_WU:
+					FUNCT7_FCVT_WU_S:
+					FUNCT7_FDIV:
+					FUNCT7_FEQ:
+					FUNCT7_FLT:
+					FUNCT7_FMAX:
+					FUNCT7_FMIN:
+					FUNCT7_FMUL:
+					FUNCT7_FSGNJ:
+					FUNCT7_FSGNJN:
+					FUNCT7_FSGNJX:
+					FUNCT7_SQRT:
+					FUNCT7_FMVSX:
+					FUNCT7_FMVXS:
+					
+					default: // instrucao invalida
+						begin
+							oOrigAULA  	<= 1'b0;
+							oOrigBULA 	<= 1'b0;
+							oRegWrite	<= 1'b0;
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0; 
+							oALUControl	<= OPNULL;
+							oMem2Reg 	<= 2'b00;
+							oOrigPC		<= 2'b00;
+						
+							oFPALUControl 	<= OPNULL;
+							oFPToMem			<= 1'b0;
+							oFPFloatToInt	<= 1'b0;
+							oFPIntToFloat	<= 1'b0;
+							oFPEscreveReg	<= 1'b0;
+							oFPWriteSrc		<= 1'b0;
+						end				
+				endcase	
 			end
 			
 		OPC_FLW:
