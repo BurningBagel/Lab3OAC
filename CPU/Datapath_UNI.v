@@ -311,8 +311,6 @@ always @(*)
 
 `ifdef RV32IMF
 // Multiplexadores FP
-assign wFPWrite = wRegWrite;
-
 always @(*)
 	case(FPIntToFloat)
 		1'b0:		  wOrigFPAULA <= wRead2;
