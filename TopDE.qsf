@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY TopDE
+set_global_assignment -name TOP_LEVEL_ENTITY Control_UNI
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:18:15  MAY 29, 2018"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Lite Edition"
@@ -300,6 +300,130 @@ set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH TopDE -section_
 set_global_assignment -name EDA_TEST_BENCH_NAME TopDE -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id TopDE
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME TopDE -section_id TopDE
+set_global_assignment -name EDA_TEST_BENCH_FILE Testes/TopDE_tb.v -section_id TopDE
+set_global_assignment -name SEARCH_PATH tempo/pll_main
+set_global_assignment -name SEARCH_PATH tempo
+set_global_assignment -name SEARCH_PATH memoria
+set_global_assignment -name VERILOG_FILE CPU/sqrt_s.v
+set_global_assignment -name QIP_FILE CPU/sqrt_s.qip
+set_global_assignment -name VERILOG_FILE CPU/mul_s.v
+set_global_assignment -name QIP_FILE CPU/mul_s.qip
+set_global_assignment -name VERILOG_FILE CPU/div_s.v
+set_global_assignment -name QIP_FILE CPU/div_s.qip
+set_global_assignment -name VERILOG_FILE CPU/cvt_w_s.v
+set_global_assignment -name QIP_FILE CPU/cvt_w_s.qip
+set_global_assignment -name VERILOG_FILE CPU/cvt_s_w.v
+set_global_assignment -name QIP_FILE CPU/cvt_s_w.qip
+set_global_assignment -name VERILOG_FILE CPU/c_comp.v
+set_global_assignment -name QIP_FILE CPU/c_comp.qip
+set_global_assignment -name VERILOG_FILE CPU/abs_s.v
+set_global_assignment -name QIP_FILE CPU/abs_s.qip
+set_global_assignment -name VERILOG_FILE CPU/FPALU.v
+set_global_assignment -name QIP_FILE CPU/add_sub.qip
+set_global_assignment -name VERILOG_FILE TopDE.v
+set_global_assignment -name VERILOG_FILE Parametros.v
+set_global_assignment -name MIF_FILE de1_text.mif
+set_global_assignment -name MIF_FILE de1_data.mif
+set_global_assignment -name VERILOG_FILE CPU/CPU.v
+set_global_assignment -name VERILOG_FILE CPU/Datapath_UNI.v
+set_global_assignment -name VERILOG_FILE CPU/Datapath_MULTI.v
+set_global_assignment -name VERILOG_FILE CPU/Datapath_PIPEM.v
+set_global_assignment -name VERILOG_FILE CPU/Control_UNI.v
+set_global_assignment -name VERILOG_FILE CPU/Control_MULTI.v
+set_global_assignment -name VERILOG_FILE CPU/Control_PIPEM.v
+set_global_assignment -name VERILOG_FILE CPU/ALU.v
+set_global_assignment -name VERILOG_FILE CPU/Registers.v
+set_global_assignment -name VERILOG_FILE CPU/BranchControl.v
+set_global_assignment -name VERILOG_FILE CPU/ImmGen.v
+set_global_assignment -name VERILOG_FILE CPU/HazardUnitM.v
+set_global_assignment -name VERILOG_FILE CPU/ForwardUnitM.v
+set_global_assignment -name VERILOG_FILE CPU/Branch_PIPEM.v
+set_global_assignment -name VERILOG_FILE Tempo/CLOCK_Interface.v
+set_global_assignment -name VERILOG_FILE Tempo/Break_Interface.v
+set_global_assignment -name VERILOG_FILE Tempo/oneshot.v
+set_global_assignment -name VERILOG_FILE Tempo/mono.v
+set_global_assignment -name QIP_FILE Tempo/breaker.qip
+set_global_assignment -name VERILOG_FILE Tempo/reset_delay.v
+set_global_assignment -name VERILOG_FILE Tempo/PLL_Main.v -library PLL_Main
+set_global_assignment -name QIP_FILE Tempo/PLL_Main.qip
+set_global_assignment -name SOURCE_FILE Tempo/PLL_Main.cmp
+set_global_assignment -name VERILOG_FILE Memoria/CodeMemory_Interface.v
+set_global_assignment -name VERILOG_FILE Memoria/DataMemory_Interface.v
+set_global_assignment -name VERILOG_FILE Memoria/Memory_Interface.v
+set_global_assignment -name VERILOG_FILE Memoria/MemStore.v
+set_global_assignment -name VERILOG_FILE Memoria/MemLoad.v
+set_global_assignment -name QIP_FILE Memoria/UserDataBlock.qip
+set_global_assignment -name QIP_FILE Memoria/UserCodeBlock.qip
+set_global_assignment -name VERILOG_FILE stopwatch/STOPWATCH_Interface.v
+set_global_assignment -name VERILOG_FILE stopwatch/Stopwatch_divider_clk.v
+set_global_assignment -name VERILOG_FILE Sintetizador/Sintetizador_Interface.v
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/SyscallSynthControl.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Synthesizer.sv
+set_global_assignment -name VERILOG_FILE Sintetizador/SynthControl.v
+set_global_assignment -name VERILOG_FILE Sintetizador/Sintetizador.v
+set_global_assignment -name VERILOG_FILE Sintetizador/SineTable.v
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/SineCalculator.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Oscillator.sv
+set_global_assignment -name VERILOG_FILE Sintetizador/NoteTable.v
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Note.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Filter.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Envelope.sv
+set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Channel.sv
+set_global_assignment -name MIF_FILE Sintetizador/sine.mif
+set_global_assignment -name MIF_FILE Sintetizador/notes.mif
+set_global_assignment -name VERILOG_FILE PS2/TecladoPS2_Interface.v
+set_global_assignment -name VERILOG_FILE PS2/MousePS2_Interface.v
+set_global_assignment -name VERILOG_FILE PS2/tecladoPS2.v
+set_global_assignment -name VERILOG_FILE PS2/scan2ascii.v
+set_global_assignment -name VERILOG_FILE PS2/PS2_Controller.v
+set_global_assignment -name VERILOG_FILE PS2/mouse_hugo.v
+set_global_assignment -name VERILOG_FILE PS2/keyscan.v
+set_global_assignment -name VERILOG_FILE PS2/keyboard.v
+set_global_assignment -name VERILOG_FILE PS2/Altera_UP_PS2_Data_In.v
+set_global_assignment -name VERILOG_FILE PS2/Altera_UP_PS2_Command_Out.v
+set_global_assignment -name VERILOG_FILE lfsr/lfsr_interface.v
+set_global_assignment -name VERILOG_FILE lfsr/LFSR_word.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_Interface.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_transmitter.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_receiver.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_parameters.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_decoder.v
+set_global_assignment -name VERILOG_FILE IrDA/IrDA_clk.v
+set_global_assignment -name VERILOG_FILE Display7/Display7_Interface.v
+set_global_assignment -name VERILOG_FILE Display7/decoder7.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/AudioCODEC_Interface.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/I2C_Controller.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/I2C_AV_Config.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/AudioVideo_PLL.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/audio_converter.v
+set_global_assignment -name VERILOG_FILE AudioCODEC/audio_clock.v
+set_global_assignment -name VERILOG_FILE VGA/VGA_Interface.v
+set_global_assignment -name VERILOG_FILE VGA/VgaPll.v -library VgaPll
+set_global_assignment -name QIP_FILE VGA/VgaPll.qip
+set_global_assignment -name SOURCE_FILE VGA/VgaPll.cmp
+set_global_assignment -name VERILOG_FILE VGA/VgaAdapter.v
+set_global_assignment -name VERILOG_FILE VGA/VGA_Audio_PLL.v
+set_global_assignment -name VERILOG_FILE VGA/RegDisplay.v
+set_global_assignment -name VERILOG_FILE VGA/HexFont.v
+set_global_assignment -name MIF_FILE VGA/display.mif
+set_global_assignment -name MIF_FILE VGA/gba.mif
+set_global_assignment -name QIP_FILE VGA/MemoryVGA.qip
+set_global_assignment -name VECTOR_WAVEFORM_FILE Testes/Waveform1.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Testes/Waveform2.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE Memory_Interface.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE MemBlock.vwf
+set_global_assignment -name VECTOR_WAVEFORM_FILE DataMemory_Interface.vwf
+set_global_assignment -name QIP_FILE CPU/cvt_wu_s.qip
+set_global_assignment -name SIP_FILE CPU/cvt_wu_s.sip
+set_global_assignment -name QIP_FILE CPU/cvt_s_wu.qip
+set_global_assignment -name SIP_FILE CPU/cvt_s_wu.sip
+set_global_assignment -name QIP_FILE fmax.qip
+set_global_assignment -name SIP_FILE fmax.sip
+set_global_assignment -name QIP_FILE fmin.qip
+set_global_assignment -name SIP_FILE fmin.sip
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name VIRTUAL_PIN ON -to BR_Escrita[0]
 set_instance_assignment -name VIRTUAL_PIN ON -to BR_Escrita[1]
 set_instance_assignment -name VIRTUAL_PIN ON -to BR_Escrita[2]
@@ -670,128 +794,4 @@ set_instance_assignment -name VIRTUAL_PIN ON -to Saida_ULA[31]
 set_instance_assignment -name VIRTUAL_PIN ON -to LeMem2
 set_instance_assignment -name VIRTUAL_PIN ON -to EscreveMem2
 set_instance_assignment -name VIRTUAL_PIN ON -to MClock2
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name EDA_TEST_BENCH_FILE Testes/TopDE_tb.v -section_id TopDE
-set_global_assignment -name SEARCH_PATH tempo/pll_main
-set_global_assignment -name SEARCH_PATH tempo
-set_global_assignment -name SEARCH_PATH memoria
-set_global_assignment -name VERILOG_FILE CPU/sqrt_s.v
-set_global_assignment -name QIP_FILE CPU/sqrt_s.qip
-set_global_assignment -name VERILOG_FILE CPU/mul_s.v
-set_global_assignment -name QIP_FILE CPU/mul_s.qip
-set_global_assignment -name VERILOG_FILE CPU/div_s.v
-set_global_assignment -name QIP_FILE CPU/div_s.qip
-set_global_assignment -name VERILOG_FILE CPU/cvt_w_s.v
-set_global_assignment -name QIP_FILE CPU/cvt_w_s.qip
-set_global_assignment -name VERILOG_FILE CPU/cvt_s_w.v
-set_global_assignment -name QIP_FILE CPU/cvt_s_w.qip
-set_global_assignment -name VERILOG_FILE CPU/c_comp.v
-set_global_assignment -name QIP_FILE CPU/c_comp.qip
-set_global_assignment -name VERILOG_FILE CPU/abs_s.v
-set_global_assignment -name QIP_FILE CPU/abs_s.qip
-set_global_assignment -name VERILOG_FILE CPU/FPALU.v
-set_global_assignment -name QIP_FILE CPU/add_sub.qip
-set_global_assignment -name VERILOG_FILE TopDE.v
-set_global_assignment -name VERILOG_FILE Parametros.v
-set_global_assignment -name MIF_FILE de1_text.mif
-set_global_assignment -name MIF_FILE de1_data.mif
-set_global_assignment -name VERILOG_FILE CPU/CPU.v
-set_global_assignment -name VERILOG_FILE CPU/Datapath_UNI.v
-set_global_assignment -name VERILOG_FILE CPU/Datapath_MULTI.v
-set_global_assignment -name VERILOG_FILE CPU/Datapath_PIPEM.v
-set_global_assignment -name VERILOG_FILE CPU/Control_UNI.v
-set_global_assignment -name VERILOG_FILE CPU/Control_MULTI.v
-set_global_assignment -name VERILOG_FILE CPU/Control_PIPEM.v
-set_global_assignment -name VERILOG_FILE CPU/ALU.v
-set_global_assignment -name VERILOG_FILE CPU/Registers.v
-set_global_assignment -name VERILOG_FILE CPU/BranchControl.v
-set_global_assignment -name VERILOG_FILE CPU/ImmGen.v
-set_global_assignment -name VERILOG_FILE CPU/HazardUnitM.v
-set_global_assignment -name VERILOG_FILE CPU/ForwardUnitM.v
-set_global_assignment -name VERILOG_FILE CPU/Branch_PIPEM.v
-set_global_assignment -name VERILOG_FILE Tempo/CLOCK_Interface.v
-set_global_assignment -name VERILOG_FILE Tempo/Break_Interface.v
-set_global_assignment -name VERILOG_FILE Tempo/oneshot.v
-set_global_assignment -name VERILOG_FILE Tempo/mono.v
-set_global_assignment -name QIP_FILE Tempo/breaker.qip
-set_global_assignment -name VERILOG_FILE Tempo/reset_delay.v
-set_global_assignment -name VERILOG_FILE Tempo/PLL_Main.v -library PLL_Main
-set_global_assignment -name QIP_FILE Tempo/PLL_Main.qip
-set_global_assignment -name SOURCE_FILE Tempo/PLL_Main.cmp
-set_global_assignment -name VERILOG_FILE Memoria/CodeMemory_Interface.v
-set_global_assignment -name VERILOG_FILE Memoria/DataMemory_Interface.v
-set_global_assignment -name VERILOG_FILE Memoria/Memory_Interface.v
-set_global_assignment -name VERILOG_FILE Memoria/MemStore.v
-set_global_assignment -name VERILOG_FILE Memoria/MemLoad.v
-set_global_assignment -name QIP_FILE Memoria/UserDataBlock.qip
-set_global_assignment -name QIP_FILE Memoria/UserCodeBlock.qip
-set_global_assignment -name VERILOG_FILE stopwatch/STOPWATCH_Interface.v
-set_global_assignment -name VERILOG_FILE stopwatch/Stopwatch_divider_clk.v
-set_global_assignment -name VERILOG_FILE Sintetizador/Sintetizador_Interface.v
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/SyscallSynthControl.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Synthesizer.sv
-set_global_assignment -name VERILOG_FILE Sintetizador/SynthControl.v
-set_global_assignment -name VERILOG_FILE Sintetizador/Sintetizador.v
-set_global_assignment -name VERILOG_FILE Sintetizador/SineTable.v
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/SineCalculator.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Oscillator.sv
-set_global_assignment -name VERILOG_FILE Sintetizador/NoteTable.v
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Note.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Filter.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Envelope.sv
-set_global_assignment -name SYSTEMVERILOG_FILE Sintetizador/Channel.sv
-set_global_assignment -name MIF_FILE Sintetizador/sine.mif
-set_global_assignment -name MIF_FILE Sintetizador/notes.mif
-set_global_assignment -name VERILOG_FILE PS2/TecladoPS2_Interface.v
-set_global_assignment -name VERILOG_FILE PS2/MousePS2_Interface.v
-set_global_assignment -name VERILOG_FILE PS2/tecladoPS2.v
-set_global_assignment -name VERILOG_FILE PS2/scan2ascii.v
-set_global_assignment -name VERILOG_FILE PS2/PS2_Controller.v
-set_global_assignment -name VERILOG_FILE PS2/mouse_hugo.v
-set_global_assignment -name VERILOG_FILE PS2/keyscan.v
-set_global_assignment -name VERILOG_FILE PS2/keyboard.v
-set_global_assignment -name VERILOG_FILE PS2/Altera_UP_PS2_Data_In.v
-set_global_assignment -name VERILOG_FILE PS2/Altera_UP_PS2_Command_Out.v
-set_global_assignment -name VERILOG_FILE lfsr/lfsr_interface.v
-set_global_assignment -name VERILOG_FILE lfsr/LFSR_word.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_Interface.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_transmitter.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_receiver.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_parameters.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_decoder.v
-set_global_assignment -name VERILOG_FILE IrDA/IrDA_clk.v
-set_global_assignment -name VERILOG_FILE Display7/Display7_Interface.v
-set_global_assignment -name VERILOG_FILE Display7/decoder7.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/AudioCODEC_Interface.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/I2C_Controller.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/I2C_AV_Config.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/AudioVideo_PLL.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/audio_converter.v
-set_global_assignment -name VERILOG_FILE AudioCODEC/audio_clock.v
-set_global_assignment -name VERILOG_FILE VGA/VGA_Interface.v
-set_global_assignment -name VERILOG_FILE VGA/VgaPll.v -library VgaPll
-set_global_assignment -name QIP_FILE VGA/VgaPll.qip
-set_global_assignment -name SOURCE_FILE VGA/VgaPll.cmp
-set_global_assignment -name VERILOG_FILE VGA/VgaAdapter.v
-set_global_assignment -name VERILOG_FILE VGA/VGA_Audio_PLL.v
-set_global_assignment -name VERILOG_FILE VGA/RegDisplay.v
-set_global_assignment -name VERILOG_FILE VGA/HexFont.v
-set_global_assignment -name MIF_FILE VGA/display.mif
-set_global_assignment -name MIF_FILE VGA/gba.mif
-set_global_assignment -name QIP_FILE VGA/MemoryVGA.qip
-set_global_assignment -name VECTOR_WAVEFORM_FILE Testes/Waveform1.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Testes/Waveform2.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Memory_Interface.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE MemBlock.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE DataMemory_Interface.vwf
-set_global_assignment -name QIP_FILE CPU/cvt_wu_s.qip
-set_global_assignment -name SIP_FILE CPU/cvt_wu_s.sip
-set_global_assignment -name QIP_FILE CPU/cvt_s_wu.qip
-set_global_assignment -name SIP_FILE CPU/cvt_s_wu.sip
-set_global_assignment -name QIP_FILE fmax.qip
-set_global_assignment -name SIP_FILE fmax.sip
-set_global_assignment -name QIP_FILE fmin.qip
-set_global_assignment -name SIP_FILE fmin.sip

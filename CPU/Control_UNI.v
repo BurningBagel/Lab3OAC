@@ -337,36 +337,52 @@ always @(*)
 			begin
 				oOrigAULA  	<= 1'b0;
 				oOrigBULA 	<= 1'b0;
-				oRegWrite	<= 1'b1;
+				oRegWrite	<= 1'b0; 	//apenas instrs com R[rd], else 0.
 				oMemWrite	<= 1'b0; 
 				oMemRead 	<= 1'b0;
-				oALUControl	<= OPNULL;	
-				oMem2Reg 	<= 2'b00;
-				oOrigPC		<= 2'b00;
+				oALUControl	<= OPNULL;	//don't care pra add, sub, mul, div, sqrt, sgnjs, min, max.
+				oMem2Reg 	<= 2'b00;	//don't care pra add, sub, mul, div, sqrt, sgnjs, min, max.
+				oOrigPC		<= 2'b00;	//pc+4 sempre.
 
-				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPToMem			<= 1'b0;	//don't care
+				oFPFloatToInt	<= 1'b0;	//don't care pra add, sub, mul, div, sqrt, sgnjs, min, max. 
+				oFPIntToFloat	<= 1'b1;	//1=dado vindo de F, 0=dado vindo de R.
+				oFPEscreveReg	<= 1'b1;	//apenas instrs com F[rd], else 0.
+				oFPWriteSrc		<= 1'b0;	//0 para armazenar o resultado da fpula, 1 pro resultado de mem2reg.
 			
 				case (Funct7)
-					FUNCT7_FADD: 
-					FUNCT7_FSUB:
+				//intruções da forma F[rd]=F[rs1] op F[rs2]
+					//instruções que dependem apenas do func7 (funcs7 únicos.)
+					FUNCT7_FADD:			oFPALUControl	<= FOPADD;
+					FUNCT7_FSUB:			oFPALUControl	<= FOPSUB;
+					FUNCT7_SQRT:			oFPALUControl	<= FOPSQRT;
+					FUNCT7_FDIV:			oFPALUControl	<= FOPDIV;
+					FUNCT7_FMUL:			oFPALUControl	<= FOPMUL;
+					
+					//instruções que dependem do func3
+					FUNCT7_FMAX,			
+					FUNCT7_FMIN:			
+						if(Funct3==FUNCT3_MAX)		oFPALUControl	<= FOPMAX;
+						else								oFPALUControl	<= FOPMIN;
+					FUNCT7_FSGNJ,			
+					FUNCT7_FSGNJN,			
+					FUNCT7_FSGNJX:			
+						if(Funct3==FUNCT3_SGNJ)			oFPALUControl	<= FOPSGNJ;
+						else 
+							begin
+							if(Funct3==FUNCT3_SGNJN)	oFPALUControl	<= FOPSGNJN;
+							else								oFPALUControl	<= FOPSGNJX;
+							end
+						
+					
+					
+					
 					FUNCT7_FCVT_S_W:
 					FUNCT7_FCVT_W_S:
 					FUNCT7_FCVT_S_WU:
 					FUNCT7_FCVT_WU_S:
-					FUNCT7_FDIV:
 					FUNCT7_FEQ:
 					FUNCT7_FLT:
-					FUNCT7_FMAX:
-					FUNCT7_FMIN:
-					FUNCT7_FMUL:
-					FUNCT7_FSGNJ:
-					FUNCT7_FSGNJN:
-					FUNCT7_FSGNJX:
-					FUNCT7_SQRT:
 					FUNCT7_FMVSX:
 					FUNCT7_FMVXS:
 					
