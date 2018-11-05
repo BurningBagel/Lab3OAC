@@ -1,5 +1,2 @@
 TopDE.qws
-db/TopDE.cmp.rdb
-db/TopDE.db_info
-db/TopDE.restore.qmsg
-db/TopDE.sld_design_entry.sc
+db/*

@@ -10,9 +10,9 @@ module FPALU (
 	output reg onan, ozero, ooverflow, ounderflow,
 	output reg oCompResult
 	);
-	    
+
 //wire [3:0] icontrol = FOPADD;   // Para análise
-	
+
 // Para a operacao add e sub
 wire [31:0] resultadd;
 wire nanadd,zeroadd,overflowadd,underflowadd;
@@ -24,7 +24,7 @@ wire nanmul,zeromul,overflowmul,underflowmul;
 // Para a operacao div
 wire [31:0] resultdiv;
 wire nandiv,zerodiv,overflowdiv,underflowdiv;
-	
+
 // Para a operacao sqrt
 wire [31:0] resultsqrt;
 wire nansqrt,zerosqrt,overflowsqrt;
@@ -49,11 +49,21 @@ wire [31:0] resultcvt_s_w;
 wire [31:0] resultcvt_w_s;
 wire nancvt_w_s,overflowcvt_w_s,underflowcvt_w_s;
 
+// Para a operação converte word unsigned_simples
+wire [31:0] resultcvt_wu_s;
 
+// Para a operação converte simples_word unsigned
+wire [31:0] resultcvt_s_wu;
+
+// Para a operação max
+wire [31:0] resultmax;
+
+// Para a operação min
+wire [31:0] resultmin;
 
 always @(*)
 	begin
-		case (icontrol) 
+		case (icontrol)
 			FOPADD,
 			FOPSUB:		//soma e Subtração
 			begin
@@ -64,7 +74,7 @@ always @(*)
 				ounderflow = underflowadd;
 				oCompResult = 1'b0;
 			end
-			
+
 			FOPMUL:		//multiplicação
 			begin
 				oresult = resultmul;
@@ -104,7 +114,7 @@ always @(*)
 				ounderflow = underflowabs;
 				oCompResult = 1'b0;
 			end
-			
+
 			FOPNEG:		//neg
 			begin
 				oresult[31] = ~idataa[31];
@@ -115,8 +125,8 @@ always @(*)
 				ounderflow = 1'b0;
 				oCompResult = 1'b0;
 			end
-			
-			FOPSIGNJ:		//signj #TODO
+
+			FOPSGNJ:		//signj #TODO
 			begin
 				oresult[31] = idatab[31]; //f1 = sinalde(b)+valorde(a)
 				oresult[30:0] = idataa[30:0];
@@ -126,8 +136,8 @@ always @(*)
 				ounderflow = 1'b0;
 				oCompResult = 1'b0;
 			end
-			
-			FOPSIGNJN:		//signjn #TODO
+
+			FOPSGNJN:		//signjn #TODO
 			begin
 				oresult[31] = ~idatab[31]; //f1 = nega(sinalde(b))+valorde(a)
 				oresult[30:0] = idataa[30:0];
@@ -137,8 +147,8 @@ always @(*)
 				ounderflow = 1'b0;
 				oCompResult = 1'b0;
 			end
-			
-			FOPSIGNJX:		//signjx #TODO
+
+			FOPSGNJX:		//signjx #TODO
 			begin
 				oresult[31] = idataa[31] ^ idatab[31]; //f1 = xor(sinalde(a),sinalde(b))+valorde(a)
 				oresult[30:0] = idataa[30:0];
@@ -168,7 +178,7 @@ always @(*)
 				ounderflow = 1'b0;
 				oCompResult = resultc_lt;
 			end
-			
+
 			FOPCLE:		//c_le
 			begin
 				oresult = 32'b0;
@@ -198,7 +208,47 @@ always @(*)
 				ooverflow = overflowcvt_w_s;
 				ounderflow = underflowcvt_w_s;
 				oCompResult = 1'b0;
-				
+
+			end
+			
+			FOPMAX:			//max
+			begin
+				oresult = resultmax;
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
+			
+			FOPMIN:			//min
+			begin
+				oresult = resultmin;
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
+			
+			FOPCVTSWU:		//cvt_s_wu
+			begin
+				oresult = resultcvt_s_wu;
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
+			end
+			
+			FOPCVTWUS:		//cvt_wu_s
+			begin
+				oresult = resultcvt_wu_s;
+				onan = 1'b0;
+				ozero = 1'b0;
+				ooverflow = 1'b0;
+				ounderflow = 1'b0;
+				oCompResult = 1'b0;
 			end
 
 			default
@@ -213,8 +263,8 @@ always @(*)
 		endcase
 	end
 
-add_sub add1 (	
-	.add_sub(icontrol==FOPADD),	
+add_sub add1 (
+	.add_sub(icontrol==FOPADD),
 	.clock(iclock),
 	.dataa(idataa),
 	.datab(idatab),
@@ -233,7 +283,7 @@ mul_s mul1 (
 	.result(resultmul),
 	.underflow(underflowmul),
 	.zero(zeromul));
-	
+
 div_s div1 (
 	.clock(iclock),
 	.dataa(idataa),
@@ -251,7 +301,7 @@ sqrt_s sqrt1 (
 	.overflow(overflowsqrt),
 	.result(resultsqrt),
 	.zero(zerosqrt));
-	
+
 abs_s abs1 (
 	.data(idataa),
 	.nan(nanabs),
@@ -272,7 +322,7 @@ cvt_s_w cvt_s_w1 (
 	.clock (iclock),
 	.dataa (idataa),
 	.result (resultcvt_s_w));
-	
+
 cvt_w_s cvt_w_s1 (
 	.clock (iclock),
 	.dataa (idataa),
@@ -280,5 +330,32 @@ cvt_w_s cvt_w_s1 (
 	.overflow (overflowcvt_w_s),
 	.result (resultcvt_w_s),
 	.underflow (underflowcvt_w_s));
+	
+fmax fmax1 (
+	.clock (iclock),
+	.a (idataa),
+	.b (idatab),
+	.q (resultmax);
+);
+
+
+fmin fmin1 (
+	.clock (iclock),
+	.a (idataa),
+	.b (idatab),
+	.q (resultmin);
+);
+
+cvt_wu_s cvt_wu_s1(
+	.clock (iclock),
+	.a (idataa),
+	.q (resultcvt_wu_s);
+
+);
+cvt_s_wu cvt_s_wu1(
+	.clock (iclock),
+	.a (idataa),
+	.q (resultcvt_s_wu);
+);
 
 endmodule
