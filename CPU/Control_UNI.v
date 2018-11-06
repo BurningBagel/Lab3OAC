@@ -15,7 +15,8 @@
 `ifdef RVIMF
 	 ,
 	 output [4:0]  oFPALUControl,
-	 output			oFPToMem, FPFloatToInt, FPIntToFloat, FPEscreveReg, FPWriteSrc
+	 output			oFPToMem, oFPIntToFloat, oFPEscreveReg,
+	 output [1:0]	oFPFloatToInt, oFPWriteSrc
 `endif
 );
 
@@ -41,10 +42,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 		OPC_OPIMM:
@@ -60,10 +61,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 				
 				case (Funct3)
@@ -106,10 +107,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 			
@@ -127,10 +128,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 		
@@ -147,10 +148,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			case (Funct7)
 				FUNCT7_ADD,  // ou qualquer outro 7'b0000000
@@ -184,10 +185,10 @@ always @(*)
 								`ifdef RVIMF
 								oFPALUControl 	<= OPNULL;
 								oFPToMem			<= 1'b0;
-								oFPFloatToInt	<= 1'b0;
+								oFPFloatToInt	<= 2'b00;
 								oFPIntToFloat	<= 1'b0;
 								oFPEscreveReg	<= 1'b0;
-								oFPWriteSrc		<= 1'b0;
+								oFPWriteSrc		<= 2'b00;
 								`endif
 							end				
 					endcase
@@ -198,10 +199,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			
 					case (Funct3)
@@ -240,10 +241,10 @@ always @(*)
 						`ifdef RVIMF
 						oFPALUControl 	<= OPNULL;
 						oFPToMem			<= 1'b0;
-						oFPFloatToInt	<= 1'b0;
+						oFPFloatToInt	<= 2'b00;
 						oFPIntToFloat	<= 1'b0;
 						oFPEscreveReg	<= 1'b0;
-						oFPWriteSrc		<= 1'b0;
+						oFPWriteSrc		<= 2'b00;
 						`endif
 					end				
 			endcase			
@@ -263,10 +264,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 			
@@ -284,10 +285,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 			
@@ -305,10 +306,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 		
@@ -326,10 +327,10 @@ always @(*)
 				`ifdef RVIMF
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 1'b0;
+				oFPFloatToInt	<= 2'b00;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0;
+				oFPWriteSrc		<= 2'b00;
 				`endif
 			end
 `ifdef RVIMF

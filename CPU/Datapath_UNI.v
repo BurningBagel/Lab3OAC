@@ -71,11 +71,12 @@ wire [31:0] wFPWrite;
 
 // fios FP
 `ifdef RVIMF
-wire [4:0]  wCFPALUControl;
 wire [31:0] wFPRead1, wFPRead2, wFPRegWrite;
 wire [31:0] wOrigFPAULA,wOrigFPBULA,wFPALUresult;
 
-wire			wCFPRegWrite;
+wire			wCFPRegWrite,wCFPToMem,wCFPIntToFloat;
+wire [4:0]  wCFPALUControl;
+wire [1:0]	wCFPWriteSrc,wCFPFloatToInt;
 
 // wire [31:0] wFPWrite; // fio que recebe saída do MUX depois da memória de dados
 wire [31:0] wFPStore; // saída do Mux para escolher entre wRead2 e saída da FPULA
@@ -252,9 +253,15 @@ Control_UNI CONTROL0 (
 	 .oMemRead(wCMemRead),
     .oALUControl(wCALUControl),
     .oOrigPC(wCOrigPC)
-	 ifdef RVIMF
-	 ,.oFPALUControl(wCFPALUControl)
-	 endif
+	 `ifdef RVIMF
+	 ,
+	 .oFPALUControl(wCFPALUControl),
+	 .oFPToMem(wCFPToMem),
+	 .oFPFloatToInt(wCFPFloatToInt),
+	 .oFPIntToFloat(wCFPIntToFloat),
+	 .oFPEscreveReg(wCFPEscreveReg),
+	 .oFPWriteSrc(wCFPWriteSrc)
+	 `endif
 	);
 
 
@@ -312,30 +319,32 @@ always @(*)
 `ifdef RV32IMF
 // Multiplexadores FP
 always @(*)
-	case(FPIntToFloat)
-		1'b0:		  wOrigFPAULA <= wRead2;
+	case(wCFPIntToFloat)
+		1'b0:		  wOrigFPAULA <= wRead1;
 		1'b1:		  wOrigFPAULA <= wFPRead1;
 		default:   wOrigFPAULA <= ZERO;
 	endcase
 
 always @(*)
-	case(FPFloatToInt)
-		1'b0:		  wRegWrite <= wFPWrite;
-		1'b1:      wRegWrite <= wFPALUresult;
+	case(wCFPFloatToInt)
+		2'b00:	  wRegWrite <= wFPWrite;
+		2'b01:     wRegWrite <= wFPALUresult;
+		2'b10:     wRegWrite <= wFPRead1;
 		default:   wRegWrite <= ZERO;
 	endcase
 
 always @(*)
-	case(FPWriteSrc)
-		1'b0:      wFPRegWrite <= wFPALUresult;
-		1'b0:      wFPRegWrite <= wRegWrite;
+	case(wCFPWriteSrc)
+		2'b00:     wFPRegWrite <= wFPALUresult;
+		2'b01:     wFPRegWrite <= wRegWrite;
+		2'b10:	  wFPRegWrite <= wRead1;
 		default:   wFPRegWrite <= ZERO;
 	endcase
 
 always @(*)
-	case(oFPToMem)
+	case(wCFPToMem)
 		1'b0:      wFPStore <= wRead2;
-		1'b1:      wFPStore <= wFPRead1;
+		1'b1:      wFPStore <= wFPRead2;
 		default:   wFPStore <= ZERO;
 	endcase
 
