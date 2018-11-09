@@ -12,7 +12,7 @@
     output    	 	oOrigAULA, oOrigBULA, oRegWrite, oMemWrite, oMemRead,
 	 output [1:0]	oMem2Reg, oOrigPC,
 	 output [4:0]  oALUControl
-`ifdef RVIMF
+`ifdef RV32IMF
 	 ,
 	 output [4:0]  oFPALUControl,
 	 output			oFPToMem, oFPIntToFloat, oFPEscreveReg,
@@ -24,6 +24,7 @@
 wire [6:0] Opcode = iInstr[ 6: 0];
 wire [2:0] Funct3	= iInstr[14:12];
 wire [6:0] Funct7	= iInstr[31:25];
+wire [4:0] Rs2		= iInstr[24:20];
 
 
 always @(*)
@@ -39,14 +40,16 @@ always @(*)
 				oMem2Reg 		<= 2'b10;
 				oOrigPC			<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 		OPC_OPIMM:
 			begin
@@ -58,14 +61,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 				
 				case (Funct3)
 					FUNCT3_ADD:			oALUControl <= OPADD;
@@ -89,6 +94,17 @@ always @(*)
 							oALUControl	<= OPNULL;
 							oMem2Reg 	<= 2'b00;
 							oOrigPC		<= 2'b00;
+							
+					`ifdef RV32IMF
+		
+							oFPALUControl 	<= OPNULL;	//don't care
+							oFPToMem			<= 1'b0;
+							oFPFloatToInt	<= 2'b00;
+							oFPIntToFloat	<= 1'b0;		//don't care
+							oFPEscreveReg	<= 1'b0;		
+							oFPWriteSrc		<= 2'b00;	//don't care
+				
+					`endif
 						end				
 				endcase
 			end
@@ -104,14 +120,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 			
 		OPC_STORE:
@@ -125,14 +143,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 		
 		OPC_RTYPE:
@@ -145,14 +165,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			case (Funct7)
 				FUNCT7_ADD,  // ou qualquer outro 7'b0000000
 				FUNCT7_SUB:	 // SUB ou SRA			
@@ -182,28 +204,21 @@ always @(*)
 								oMem2Reg 	<= 2'b00;
 								oOrigPC		<= 2'b00;
 								
-								`ifdef RVIMF
+						`ifdef RV32IMF
+						
 								oFPALUControl 	<= OPNULL;
 								oFPToMem			<= 1'b0;
 								oFPFloatToInt	<= 2'b00;
 								oFPIntToFloat	<= 1'b0;
 								oFPEscreveReg	<= 1'b0;
 								oFPWriteSrc		<= 2'b00;
-								`endif
+								
+						`endif
 							end				
 					endcase
 
 `ifdef RV32M					
 				FUNCT7_MULDIV:
-				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
-				oFPToMem			<= 1'b0;
-				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
 			
 					case (Funct3)
 						FUNCT3_MUL:			oALUControl <= OPMUL;
@@ -224,6 +239,17 @@ always @(*)
 								oALUControl	<= OPNULL;
 								oMem2Reg 	<= 2'b00;
 								oOrigPC		<= 2'b00;
+								
+						`ifdef RV32IMF
+		
+								oFPALUControl 	<= OPNULL;	//don't care
+								oFPToMem			<= 1'b0;
+								oFPFloatToInt	<= 2'b00;
+								oFPIntToFloat	<= 1'b0;		//don't care
+								oFPEscreveReg	<= 1'b0;		
+								oFPWriteSrc		<= 2'b00;	//don't care
+				
+						`endif
 							end				
 					endcase
 `endif			
@@ -238,14 +264,16 @@ always @(*)
 						oMem2Reg 	<= 2'b00;
 						oOrigPC		<= 2'b00;
 						
-						`ifdef RVIMF
+				`ifdef RV32IMF
+				
 						oFPALUControl 	<= OPNULL;
 						oFPToMem			<= 1'b0;
 						oFPFloatToInt	<= 2'b00;
 						oFPIntToFloat	<= 1'b0;
 						oFPEscreveReg	<= 1'b0;
 						oFPWriteSrc		<= 2'b00;
-						`endif
+						
+				`endif
 					end				
 			endcase			
 		end
@@ -261,14 +289,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 			
 		OPC_BRANCH:
@@ -282,14 +312,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b01;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 			
 		OPC_JALR:
@@ -303,14 +335,16 @@ always @(*)
 				oMem2Reg 	<= 2'b01;
 				oOrigPC		<= 2'b11;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
 		
 		OPC_JAL:
@@ -324,16 +358,18 @@ always @(*)
 				oMem2Reg 	<= 2'b01;
 				oOrigPC		<= 2'b10;
 				
-				`ifdef RVIMF
-				oFPALUControl 	<= OPNULL;
+		`ifdef RV32IMF
+		
+				oFPALUControl 	<= OPNULL;	//don't care
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 2'b00;
-				oFPIntToFloat	<= 1'b0;
-				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 2'b00;
-				`endif
+				oFPIntToFloat	<= 1'b0;		//don't care
+				oFPEscreveReg	<= 1'b0;		
+				oFPWriteSrc		<= 2'b00;	//don't care
+				
+		`endif
 			end
-`ifdef RVIMF
+`ifdef RV32IMF
 		OPC_FOPR:
 			begin
 				oOrigAULA  	<= 1'b0;
@@ -346,10 +382,10 @@ always @(*)
 				oOrigPC		<= 2'b00;	//pc+4 sempre.
 
 				oFPToMem			<= 1'b0;	//don't care
-				oFPFloatToInt	<= 1'b0;	//don't care pra add, sub, mul, div, sqrt, sgnjs, min, max. 
+				oFPFloatToInt	<= 2'b00;	//don't care pra add, sub, mul, div, sqrt, sgnjs, min, max. 
 				oFPIntToFloat	<= 1'b1;	//1=dado vindo de F, 0=dado vindo de R.
 				oFPEscreveReg	<= 1'b1;	//apenas instrs com F[rd], else 0.
-				oFPWriteSrc		<= 1'b0;	//0 para armazenar o resultado da fpula, 1 pro resultado de mem2reg.
+				oFPWriteSrc		<= 2'b00;	//0 para armazenar o resultado da fpula, 1 pro resultado de mem2reg.
 			
 				case (Funct7)
 				//intruções da forma F[rd]=F[rs1] op F[rs2]
@@ -362,30 +398,135 @@ always @(*)
 					
 					//instruções que dependem do func3
 					FUNCT7_FMAX,			
-					FUNCT7_FMIN:			
-						if(Funct3==FUNCT3_MAX)		oFPALUControl	<= FOPMAX;
-						else								oFPALUControl	<= FOPMIN;
+					FUNCT7_FMIN:
+						begin
+						if(Funct3==FUNCT3_MAX)
+							oFPALUControl	<= FOPMAX;
+						else								
+							oFPALUControl	<= FOPMIN;
+						end
+						
 					FUNCT7_FSGNJ,			
 					FUNCT7_FSGNJN,			
-					FUNCT7_FSGNJX:			
-						if(Funct3==FUNCT3_SGNJ)			oFPALUControl	<= FOPSGNJ;
+					FUNCT7_FSGNJX:	
+						begin
+						if(Funct3==FUNCT3_SGNJ)			
+							oFPALUControl	<= FOPSGNJ;
 						else 
 							begin
-							if(Funct3==FUNCT3_SGNJN)	oFPALUControl	<= FOPSGNJN;
-							else								oFPALUControl	<= FOPSGNJX;
+								if(Funct3==FUNCT3_SGNJN)	
+									oFPALUControl	<= FOPSGNJN;
+								else								
+									oFPALUControl	<= FOPSGNJX;
 							end
+						end
 						
 					
 					
+					FUNCT7_FCVT_S_W,	//Convert from Integer	F[rd]=float(R[rs1])
+					FUNCT7_FCVT_S_WU:	//Convert from Unsig Integer	F[rd]=float(R[rs1])
+						begin
+							oOrigAULA  	<= 1'b0;		//don't care
+							oOrigBULA 	<= 1'b0;		//don't care
+							oRegWrite	<= 1'b0; 	
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0;
+							oALUControl	<= OPNULL;	//don't care
+							oMem2Reg 	<= 2'b00;	//don't care
+							oOrigPC		<= 2'b00;	//pc+4 sempre.
+
+							oFPToMem			<= 1'b0;		//don't care
+							oFPFloatToInt	<= 2'b00;	//don't care	
+							oFPIntToFloat	<= 1'b0;	
+							oFPEscreveReg	<= 1'b1;	
+							oFPWriteSrc		<= 2'b00;	
+							
+							if(Rs2==5'b00000)	oFPALUControl	<= FOPCVTSW;
+							else					oFPALUControl	<= FOPCVTSWU;
+						end
 					
-					FUNCT7_FCVT_S_W:
-					FUNCT7_FCVT_W_S:
-					FUNCT7_FCVT_S_WU:
-					FUNCT7_FCVT_WU_S:
-					FUNCT7_FEQ:
-					FUNCT7_FLT:
-					FUNCT7_FMVSX:
-					FUNCT7_FMVXS:
+					FUNCT7_FCVT_W_S,	//Convert to Integer	R[rd]=integer(F[rs1])
+					FUNCT7_FCVT_WU_S:	//Convert to Unsig Integer	R[rd]=integer(F[rs1])
+						begin
+							oOrigAULA  	<= 1'b0;		//don't care
+							oOrigBULA 	<= 1'b0;		//don't care
+							oRegWrite	<= 1'b1; 	
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0;
+							oALUControl	<= OPNULL;	//don't care
+							oMem2Reg 	<= 2'b00;	//don't care
+							oOrigPC		<= 2'b00;	//pc+4 sempre.
+
+							oFPToMem			<= 1'b0;		//don't care
+							oFPFloatToInt	<= 2'b01;		
+							oFPIntToFloat	<= 1'b1;	
+							oFPEscreveReg	<= 1'b0;	
+							oFPWriteSrc		<= 2'b00;	//don't care
+							
+							if(Rs2==5'b00000)	oFPALUControl	<= FOPCVTWS;
+							else					oFPALUControl	<= FOPCVTWUS;
+						end
+					
+					
+					FUNCT7_FEQ,	//Compare Float EQual		R[rd]=(F[rs1]==F[rs2])?1:0
+					FUNCT7_FLT:	//Compare Float Less Than	R[rd]=(F[rs1]<F[rs2])?1:0
+						begin
+							oOrigAULA  	<= 1'b0;		//don't care
+							oOrigBULA 	<= 1'b0;		//don't care
+							oRegWrite	<= 1'b1; 	
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0;
+							oALUControl	<= OPNULL;	//don't care
+							oMem2Reg 	<= 2'b00;	//don't care
+							oOrigPC		<= 2'b00;	//pc+4 sempre.
+
+							oFPToMem			<= 1'b0;		//don't care
+							oFPFloatToInt	<= 2'b01;		
+							oFPIntToFloat	<= 1'b1;	
+							oFPEscreveReg	<= 1'b0;	
+							oFPWriteSrc		<= 2'b00;	//don't care
+							
+							if(Funct3==FUNCT3_FEQ)	oFPALUControl	<= FOPCEQ;
+							else							oFPALUControl	<= FOPCLT;
+						end
+					
+					FUNCT7_FMVSX:	//Move from Integer	F[rd]=R[rs1]
+						begin
+							oOrigAULA  	<= 1'b0;		//don't care
+							oOrigBULA 	<= 1'b0;		//don't care
+							oRegWrite	<= 1'b0; 	
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0;
+							oALUControl	<= OPNULL;	//don't care
+							oMem2Reg 	<= 2'b00;	//don't care
+							oOrigPC		<= 2'b00;	//pc+4 sempre.
+
+							oFPToMem			<= 1'b0;		//don't care
+							oFPFloatToInt	<= 2'b00;	//don't care	
+							oFPIntToFloat	<= 1'b0;	
+							oFPEscreveReg	<= 1'b1;	
+							oFPWriteSrc		<= 2'b00;	
+							oFPALUControl	<= FOPMVSX;
+						end
+						
+					FUNCT7_FMVXS:	//Move to Integer	R[rd]=F[rs1]
+						begin
+							oOrigAULA  	<= 1'b0;		//don't care
+							oOrigBULA 	<= 1'b0;		//don't care
+							oRegWrite	<= 1'b1; 	
+							oMemWrite	<= 1'b0; 
+							oMemRead 	<= 1'b0;
+							oALUControl	<= OPNULL;	//don't care
+							oMem2Reg 	<= 2'b00;	//don't care
+							oOrigPC		<= 2'b00;	//pc+4 sempre.
+
+							oFPToMem			<= 1'b0;		//don't care
+							oFPFloatToInt	<= 2'b01;		
+							oFPIntToFloat	<= 1'b1;	
+							oFPEscreveReg	<= 1'b0;	
+							oFPWriteSrc		<= 2'b00;	//don't care
+							oFPALUControl	<= FOPMVXS;
+						end
 					
 					default: // instrucao invalida
 						begin
@@ -400,10 +541,10 @@ always @(*)
 						
 							oFPALUControl 	<= OPNULL;
 							oFPToMem			<= 1'b0;
-							oFPFloatToInt	<= 1'b0;
+							oFPFloatToInt	<= 2'b00;
 							oFPIntToFloat	<= 1'b0;
 							oFPEscreveReg	<= 1'b0;
-							oFPWriteSrc		<= 1'b0;
+							oFPWriteSrc		<= 2'b00;
 						end				
 				endcase	
 			end
@@ -422,10 +563,10 @@ always @(*)
 				
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0; //don't care
-				oFPFloatToInt	<= 1'b0; //don't care
+				oFPFloatToInt	<= 2'b00; //don't care
 				oFPIntToFloat	<= 1'b0; //don't care
 				oFPEscreveReg	<= 1'b1;
-				oFPWriteSrc		<= 1'b1; //se vai escrever a partir da fpula ou da memoria
+				oFPWriteSrc		<= 2'b01; //se vai escrever a partir da fpula ou da memoria
 			end
 			
 		OPC_FSW:
@@ -442,10 +583,10 @@ always @(*)
 				
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b1;
-				oFPFloatToInt	<= 1'b0; //don't care
+				oFPFloatToInt	<= 2'b00; //don't care
 				oFPIntToFloat	<= 1'b0; //don't care
 				oFPEscreveReg	<= 1'b0;
-				oFPWriteSrc		<= 1'b0; //don't care		se vai escrever a partir da fpula ou da memoria
+				oFPWriteSrc		<= 2'b00; //don't care		se vai escrever a partir da fpula ou da memoria
 				
 			end
 `endif
@@ -460,14 +601,16 @@ always @(*)
 				oMem2Reg 	<= 2'b00;
 				oOrigPC		<= 2'b00;
 				
-				`ifdef RVIMF
+		`ifdef RV32IMF
+				
 				oFPALUControl 	<= OPNULL;
 				oFPToMem			<= 1'b0;
 				oFPFloatToInt	<= 1'b0;
 				oFPIntToFloat	<= 1'b0;
 				oFPEscreveReg	<= 1'b0;
 				oFPWriteSrc		<= 1'b0;
-				`endif
+				
+		`endif
         end
 		
 	endcase
