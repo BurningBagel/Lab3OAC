@@ -57,7 +57,7 @@ parameter
 	FOPCVTSW    = 5'd10,
 	FOPCVTWS    = 5'd11,
 	FOPCVTSWU   = 5'd12,
-	FOPCVTWSU   = 5'd13,
+	FOPCVTWUS   = 5'd13,
 	FOPMAX		= 5'd14,
 	FOPMIN		= 5'd15,
 	FOPSGNJ		= 5'd16,

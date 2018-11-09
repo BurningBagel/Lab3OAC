@@ -335,27 +335,23 @@ fmax fmax1 (
 	.clock (iclock),
 	.a (idataa),
 	.b (idatab),
-	.q (resultmax);
-);
+	.q (resultmax));
 
 
 fmin fmin1 (
 	.clock (iclock),
 	.a (idataa),
 	.b (idatab),
-	.q (resultmin);
-);
+	.q (resultmin));
 
 cvt_wu_s cvt_wu_s1(
 	.clock (iclock),
 	.a (idataa),
-	.q (resultcvt_wu_s);
+	.q (resultcvt_wu_s));
 
-);
 cvt_s_wu cvt_s_wu1(
 	.clock (iclock),
 	.a (idataa),
-	.q (resultcvt_s_wu);
-);
+	.q (resultcvt_s_wu));
 
 endmodule

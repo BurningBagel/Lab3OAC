@@ -70,7 +70,7 @@ wire [ 4:0] wCALUControl;
 wire [31:0] wFPWrite;
 
 // fios FP
-`ifdef RVIMF
+`ifdef RV32IMF
 wire [31:0] wFPRead1, wFPRead2, wFPRegWrite;
 wire [31:0] wOrigFPAULA,wOrigFPBULA,wFPALUresult;
 

@@ -8,8 +8,8 @@
 // ****************************************************
 // * Escolha a ISA a ser implementada                 *
 //`define RV32I
-`define RV32IM
-//`define RV32IMF
+//`define RV32IM
+`define RV32IMF
 
 
 `ifndef PARAM
