@@ -67,7 +67,7 @@ wire [ 1:0] wCMem2Reg;
 wire 			wCMemRead, wCMemWrite;
 wire [ 4:0] wCALUControl;
 
-wire [31:0] wFPWrite;
+wire [31:0] wFPWrite,wRegWriteFinal;
 
 // fios FP
 `ifdef RV32IMF
@@ -83,7 +83,11 @@ wire [31:0] wFPStore; // saída do Mux para escolher entre wRead2 e saída da FP
 
 `endif
 
-assign wFPWrite = wRegWrite;
+`ifndef RV32IMF
+assign wRegWriteFinal = wRegWrite;
+`endif
+
+//assign wFPWrite = wRegWrite;
 
 // Sinais de monitoramento e Debug
 wire [31:0] wRegDisp, wVGARead;
@@ -95,7 +99,7 @@ assign mRead1				= wRead1;
 assign mRead2				= wRead2;
 //assign mFPRead1         = wFPRead1;
 //assign mFPRead2         = wFPRead2;
-assign mRegWrite			= wRegWrite;
+assign mRegWrite			= wRegWriteFinal;
 assign mULA					= wALUresult;
 //assign mFPULA           = wFPULAresult;
 assign mDebug				= 32'h000ACE10;	// Ligar onde for preciso	
@@ -146,7 +150,7 @@ Registers REGISTERS0 (
     .iReadRegister1(wRs1),
     .iReadRegister2(wRs2),
     .iWriteRegister(wRd),
-    .iWriteData(wFPWrite),
+    .iWriteData(wRegWriteFinal),
     .iRegWrite(wCRegWrite),
     .oReadData1(wRead1),
     .oReadData2(wRead2),
@@ -179,14 +183,14 @@ ALU ALU0 (
 FPALU fpalu0(
 	.icontrol(wCALUControl),
 	.iclock(ICLK),
-	.iA(wOrigFPAULA),
-	.iB(wOrigFPBULA),
-	.oResult(wFPALUresult),
+	.idataa(wOrigFPAULA),
+	.idatab(wOrigFPBULA),
+	.oresult(wFPALUresult),
 	.oZero()
 );
 // FPREGISTERS
 Registers REGISTERS1(
-	.iclock(ICLK),
+	.iCLK(ICLK),
 	.iRST(iRST),
    .iReadRegister1(wRs1),
    .iReadRegister2(wRs2),
@@ -196,11 +200,6 @@ Registers REGISTERS1(
 	.oReadData1(wFPRead1),
 	.oReadData2(wFPRead2),
 	
-	
-	.iRegDispSelect(wRegDispSelect),    // seleção para display
-   .oRegDisp(wRegDisp),                // Reg display
-   .iVGASelect(wVGASelect),            // para mostrar Regs na tela
-   .oVGARead(wVGARead)                 // para mostrar Regs na tela
 );
 `endif
 	
@@ -209,7 +208,7 @@ wire [31:0] wMemDataWrite, wReadData;
 wire [ 3:0] wMemEnable;
 
 // caso a FPULA não esteja ativa, o wFPStore irá sempre assumir o valor de wRead2
-assign wFPStore          = wRead2;
+//assign wFPStore          = wRead2;
 
 MemStore MEMSTORE0 (
     .iAlignment(wALUresult[1:0]),
@@ -327,10 +326,10 @@ always @(*)
 
 always @(*)
 	case(wCFPFloatToInt)
-		2'b00:	  wRegWrite <= wFPWrite;
-		2'b01:     wRegWrite <= wFPALUresult;
-		2'b10:     wRegWrite <= wFPRead1;
-		default:   wRegWrite <= ZERO;
+		2'b00:	  wRegWriteFinal <= wRegWrite;
+		2'b01:     wRegWriteFinal <= wFPALUresult;
+		2'b10:     wRegWriteFinal <= wFPRead1;
+		default:   wRegWriteFinal <= ZERO;
 	endcase
 
 always @(*)

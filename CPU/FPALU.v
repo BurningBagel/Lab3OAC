@@ -285,14 +285,10 @@ mul_s mul1 (
 	.zero(zeromul));
 
 div_s div1 (
-	.clock(iclock),
-	.dataa(idataa),
-	.datab(idatab),
-	.nan(nandiv),
-	.overflow(overflowdiv),
-	.result(resultdiv),
-	.underflow(underflowdiv),
-	.zero(zerodiv));
+	.clk(iclock),
+	.a(idataa),
+	.b(idatab),
+	.q(resultdiv));
 
 sqrt_s sqrt1 (
 	.clock(iclock),
@@ -332,25 +328,25 @@ cvt_w_s cvt_w_s1 (
 	.underflow (underflowcvt_w_s));
 	
 fmax fmax1 (
-	.clock (iclock),
+	.clk (iclock),
 	.a (idataa),
 	.b (idatab),
 	.q (resultmax));
 
 
 fmin fmin1 (
-	.clock (iclock),
+	.clk (iclock),
 	.a (idataa),
 	.b (idatab),
 	.q (resultmin));
 
 cvt_wu_s cvt_wu_s1(
-	.clock (iclock),
+	.clk (iclock),
 	.a (idataa),
 	.q (resultcvt_wu_s));
 
 cvt_s_wu cvt_s_wu1(
-	.clock (iclock),
+	.clk (iclock),
 	.a (idataa),
 	.q (resultcvt_s_wu));
 
