@@ -178,6 +178,15 @@ module TopDE (
       output             VGA_SYNC_N,
       output             VGA_VS,
 		
+	`ifdef RV32IMF
+	 //output  [31:0] FPRead1,
+	 //output  [31:0] FPRead2,
+	 //output  [31:0] FPULAResult,
+	 //output  [31:0] FPULAOrigA,
+	 //output  [31:0] FPULAOrigB,
+	 
+	 `endif
+		
 		
 	 ////// Pinos virtuais para simulação ///////////
     output          MClock2, //Clock25, Clock50, Clock100,
@@ -218,11 +227,11 @@ wire [31:0] mRegWrite;
 wire [31:0] mULA;
 
 `ifdef RV32IMF
-wire [31:0] mFPRead1;
-wire [31:0] mFPRead2;
-wire [31:0] mFPULAResult;
-wire [31:0] mFPULAOrigA;
-wire [31:0] mFPULAOrigB;
+//wire [31:0] mFPRead1;
+//wire [31:0] mFPRead2;
+//wire [31:0] mFPALUResult;
+//wire [31:0] mFPALUOrigA;
+//wire [31:0] mFPALUOrigB;
 `endif	
 
 // *************** Controle do Clock ******************************************* 
@@ -275,6 +284,15 @@ assign EscreveMem2    	= DWriteEnable;
 assign MClock2				= CLK;
 
 
+`ifdef RV32IMF
+//assign FPRead1				= mFPRead1;
+//assign FPRead2				= mFPRead2;
+//assign FPALUResult	   = mFPALUResult;
+//assign FPALUOrigA			= mFPALUOrigA;
+//assign FPALUOrigB			= mFPALUOrigB;
+
+`endif
+
 // ********************* Gerador e gerenciador de Clock *********************
 
 CLOCK_Interface CLOCK0(
@@ -320,11 +338,11 @@ CPU CPU0 (
 	 .mULA(mULA),
 	 
 	 `ifdef RV32IMF
-	 .mFPRead1(mFPRead1),
-	 .mFPRead2(mFPRead2),
-	 .mFPALUResult(mFPALUResult),
-	 .mFPALUOrigA(mFPALUOrigA),
-	 .mFPALUOrigB(mFPALUOrigB),
+	 //.mFPRead1(mFPRead1),
+	 //.mFPRead2(mFPRead2),
+	 //.mFPALUResult(mFPALUResult),
+	 //.mFPALUOrigA(mFPALUOrigA),
+	 //.mFPALUOrigB(mFPALUOrigB),
 	 `endif
 	 
     // Barramento Dados

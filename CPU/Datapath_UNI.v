@@ -26,11 +26,11 @@ module Datapath_UNI (
 	 output wire [31:0] mULA,
 
 `ifdef RV32IMF
-	 output wire [31:0] mFPRead1,
-	 output wire [31:0] mFPRead2,
-	 output wire [31:0] mFPULAResult,
-	 output wire [31:0] mFPULAOrigA,
-	 output wire [31:0] mFPULAOrigB,
+	 //output wire [31:0] mFPRead1,
+	 //output wire [31:0] mFPRead2,
+	 //output wire [31:0] mFPALUResult,
+	 //output wire [31:0] mFPALUOrigA,
+	 //output wire [31:0] mFPALUOrigB,
 `endif
 
 
@@ -112,11 +112,11 @@ assign wRegDispSelect 	= mRegDispSelect;
 assign wVGASelect 		= mVGASelect;
 
 `ifdef RV32IMF
-assign   mFPRead1			= wFPRead1;
-assign   mFPRead2			= wFPRead2;
-assign   mFPALUResult	= wFPALUresult;
-assign   mFPALUOrigA		= wOrigFPAULA;
-assign   mFPALUOrigB		= wOrigFPBULA;
+//assign   mFPRead1			= wFPRead1;
+//assign   mFPRead2			= wFPRead2;
+//assign   mFPALUResult	= wFPALUresult;
+//assign   mFPALUOrigA		= wOrigFPAULA;
+//assign   mFPALUOrigB		= wOrigFPBULA;
 
 `endif
 

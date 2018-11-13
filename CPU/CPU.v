@@ -23,11 +23,11 @@ module CPU (
 	 output wire [31:0] mULA,
 	 
 	 `ifdef RV32IMF
-	 output wire [31:0] mFPRead1,
-	 output wire [31:0] mFPRead2,
-	 output wire [31:0] mFPULAResult,
-	 output wire [31:0] mFPULAOrigA,
-	 output wire [31:0] mFPULAOrigB,
+	 //output wire [31:0] mFPRead1,
+	 //output wire [31:0] mFPRead2,
+	 //output wire [31:0] mFPALUResult,
+	 //output wire [31:0] mFPALUOrigA,
+	 //output wire [31:0] mFPALUOrigB,
 	 
 	 `endif
 	 
@@ -77,11 +77,11 @@ Datapath_UNI Processor (
 	 .mULA(mULA),
 	 
 	 `ifdef RV32IMF
-	 .mFPRead1(mFPRead1),
-	 .mFPRead2(mFPRead2),
-	 .mFPALUResult(mFPALUResult),
-	 .mFPALUOrigA(mFPALUOrigA),
-	 .mFPALUOrigB(mFPALUOrigB),
+	 //.mFPRead1(mFPRead1),
+	 //.mFPRead2(mFPRead2),
+	 //.mFPALUResult(mFPALUResult),
+	 //.mFPALUOrigA(mFPALUOrigA),
+	 //.mFPALUOrigB(mFPALUOrigB),
 	 `endif
 	 
     // Barramento de dados

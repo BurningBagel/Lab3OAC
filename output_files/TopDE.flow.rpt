@@ -1,5 +1,5 @@
 Flow report for TopDE
-Tue Nov 13 18:41:04 2018
+Tue Nov 13 21:07:25 2018
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -37,24 +37,29 @@ refer to the applicable agreement for further details.
 
 
 
-+---------------------------------------------------------------------------+
-; Flow Summary                                                              ;
-+-----------------------------+---------------------------------------------+
-; Flow Status                 ; Flow Failed - Tue Nov 13 18:41:04 2018      ;
-; Quartus Prime Version       ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
-; Revision Name               ; TopDE                                       ;
-; Top-level Entity Name       ; TopDE                                       ;
-; Family                      ; Cyclone V                                   ;
-; Device                      ; 5CSEMA5F31C6                                ;
-; Timing Models               ; Final                                       ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++-------------------------------------------------------------------------------+
+; Flow Summary                                                                  ;
++---------------------------------+---------------------------------------------+
+; Flow Status                     ; Successful - Tue Nov 13 21:07:25 2018       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                   ; TopDE                                       ;
+; Top-level Entity Name           ; TopDE                                       ;
+; Family                          ; Cyclone V                                   ;
+; Device                          ; 5CSEMA5F31C6                                ;
+; Timing Models                   ; Final                                       ;
+; Logic utilization (in ALMs)     ; 6,602 / 32,070 ( 21 % )                     ;
+; Total registers                 ; 3866                                        ;
+; Total pins                      ; 260 / 457 ( 57 % )                          ;
+; Total virtual pins              ; 306                                         ;
+; Total block memory bits         ; 2,208,768 / 4,065,280 ( 54 % )              ;
+; Total DSP Blocks                ; 21 / 87 ( 24 % )                            ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 2 / 6 ( 33 % )                              ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                               ;
++---------------------------------+---------------------------------------------+
 
 
 +-----------------------------------------+
@@ -62,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/13/2018 18:40:18 ;
+; Start date & time ; 11/13/2018 20:57:39 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; TopDE               ;
 +-------------------+---------------------+
@@ -73,7 +78,7 @@ refer to the applicable agreement for further details.
 +--------------------------------------+------------------------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                                ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 1098929884609.154214161704688                        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 1098929884609.154214985810952                        ; --            ; --          ; --             ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                                   ; --            ; --          ; --             ;
 ; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; TopDE                                                ; --            ; --          ; eda_simulation ;
 ; EDA_NETLIST_WRITER_OUTPUT_DIR        ; simulation/qsim                                      ; --            ; --          ; eda_simulation ;
@@ -134,8 +139,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:49     ; 1.0                     ; 5046 MB             ; 00:01:03                           ;
-; Total                ; 00:00:49     ; --                      ; --                  ; 00:01:03                           ;
+; Analysis & Synthesis ; 00:02:03     ; 1.0                     ; 5156 MB             ; 00:02:26                           ;
+; Fitter               ; 00:05:50     ; 1.2                     ; 6880 MB             ; 00:09:32                           ;
+; Assembler            ; 00:00:20     ; 1.0                     ; 4995 MB             ; 00:00:19                           ;
+; Timing Analyzer      ; 00:01:00     ; 1.9                     ; 5892 MB             ; 00:01:38                           ;
+; EDA Netlist Writer   ; 00:00:11     ; 1.0                     ; 5092 MB             ; 00:00:11                           ;
+; Total                ; 00:09:24     ; --                      ; --                  ; 00:14:06                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -145,6 +154,10 @@ refer to the applicable agreement for further details.
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
 ; Analysis & Synthesis ; Admin-PC         ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; Admin-PC         ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; Admin-PC         ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; Admin-PC         ; Windows 10 ; 10.0       ; x86_64         ;
+; EDA Netlist Writer   ; Admin-PC         ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -152,6 +165,10 @@ refer to the applicable agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off RISC-V -c TopDE
+quartus_fit --read_settings_files=off --write_settings_files=off RISC-V -c TopDE
+quartus_asm --read_settings_files=off --write_settings_files=off RISC-V -c TopDE
+quartus_sta RISC-V -c TopDE
+quartus_eda --read_settings_files=off --write_settings_files=off RISC-V -c TopDE
 
 
 
