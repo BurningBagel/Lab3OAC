@@ -1,0 +1,107 @@
+MIF/HEX Update report for TopDE
+Tue Nov 13 17:56:10 2018
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. MIF/HEX Update Summary
+  3. MIF/HEX Update Processed Files
+  4. MIF/HEX Update Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++---------------------------------------------------------------+
+; MIF/HEX Update Summary                                        ;
++-----------------------+---------------------------------------+
+; MIF/HEX Update Status ; Successful - Tue Nov 13 17:56:10 2018 ;
+; Revision Name         ; TopDE                                 ;
+; Top-level Entity Name ; TopDE                                 ;
+; Family                ; Cyclone V                             ;
+; Device                ; 5CSEMA5F31C6                          ;
++-----------------------+---------------------------------------+
+
+
++---------------------------------------------------------------------------+
+; MIF/HEX Update Processed Files                                            ;
++---------------------------------------------------------------------------+
+; File Name                                                                 ;
++---------------------------------------------------------------------------+
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/notes.mif   ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/sine.mif    ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/VGA/gba.mif              ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE0.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE1.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE2.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE3.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE4.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE5.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE6.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE7.rtl.mif ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif             ;
+; C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif             ;
++---------------------------------------------------------------------------+
+
+
++-------------------------+
+; MIF/HEX Update Messages ;
++-------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime MIF/HEX Update
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Processing started: Tue Nov 13 17:55:33 2018
+Info: Command: quartus_cdb RISC-V -c TopDE --update_mif
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Warning (39023): Can't find Memory Initialization File div_s_0002_memoryc2_uid154_invtables_lutmem.hex -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File div_s_0002_memoryc1_uid151_invtables_lutmem.hex -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File div_s_0002_memoryc1_uid150_invtables_lutmem.hex -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File div_s_0002_memoryc0_uid147_invtables_lutmem.hex -- skipped updates for this file
+Warning (39023): Can't find Memory Initialization File div_s_0002_memoryc0_uid146_invtables_lutmem.hex -- skipped updates for this file
+Warning (113028): 2952 out of 4096 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif Line: 1
+    Warning (113027): Addresses ranging from 1144 to 4095 are not initialized File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif Line: 1
+Critical Warning (127005): Memory depth (16384) in the design file differs from memory depth (4096) in the Memory Initialization File "C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif" -- setting initial value for remaining addresses to 0
+Warning (113028): 1024 out of 2048 addresses are uninitialized. The Quartus Prime software will initialize them to "0". There are 1 warnings found, and 1 warnings are reported. File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif Line: 1
+    Warning (113027): Addresses ranging from 1024 to 2047 are not initialized File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif Line: 1
+Critical Warning (127005): Memory depth (32768) in the design file differs from memory depth (2048) in the Memory Initialization File "C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif" -- setting initial value for remaining addresses to 0
+Info (39024): Processed the following Memory Initialization File(s)
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/notes.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/notes.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/sine.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/Sintetizador/sine.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/VGA/gba.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/VGA/gba.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE0.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE0.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE1.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE1.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE2.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE2.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE3.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE3.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE4.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE4.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE5.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE5.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE6.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE6.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE7.rtl.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/db/RISC-V.TopDE7.rtl.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_data.mif Line: 0
+    Info (39025): Processed Memory Initialization File C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif File: C:/Users/Admin/Desktop/Livros UnB/OAC/Lab 3/Core/de1_text.mif Line: 0
+Info: Quartus Prime MIF/HEX Update was successful. 0 errors, 12 warnings
+    Info: Peak virtual memory: 5002 megabytes
+    Info: Processing ended: Tue Nov 13 17:56:10 2018
+    Info: Elapsed time: 00:00:37
+    Info: Total CPU time (on all processors): 00:00:37
+
+

@@ -1,17 +1,17 @@
-Fitter Status : Successful - Sat Nov 10 18:35:46 2018
+Fitter Status : Successful - Tue Nov 13 17:15:12 2018
 Quartus Prime Version : 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 Revision Name : TopDE
 Top-level Entity Name : TopDE
 Family : Cyclone V
 Device : 5CSEMA5F31C6
 Timing Models : Final
-Logic utilization (in ALMs) : 2,160 / 32,070 ( 7 % )
-Total registers : 2464
+Logic utilization (in ALMs) : 6,602 / 32,070 ( 21 % )
+Total registers : 3866
 Total pins : 260 / 457 ( 57 % )
 Total virtual pins : 306
 Total block memory bits : 2,208,768 / 4,065,280 ( 54 % )
 Total RAM Blocks : 276 / 397 ( 70 % )
-Total DSP Blocks : 12 / 87 ( 14 % )
+Total DSP Blocks : 21 / 87 ( 24 % )
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

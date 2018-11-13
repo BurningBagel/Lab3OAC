@@ -22,10 +22,16 @@ module Datapath_UNI (
     output wire [31:0] mVGARead,
 	 output wire [31:0] mRead1,
 	 output wire [31:0] mRead2,
-	 //output wire [31:0] mFPRead1,
-	 //output wire [31:0] mFPRead2,
 	 output wire [31:0] mRegWrite,
-	 output wire [31:0] mULA,	 
+	 output wire [31:0] mULA,
+
+`ifdef RV32IMF
+	 output wire [31:0] mFPRead1,
+	 output wire [31:0] mFPRead2,
+	 output wire [31:0] mFPULAResult,
+	 output wire [31:0] mFPULAOrigA,
+	 output wire [31:0] mFPULAOrigB,
+`endif
 
 
     //  Barramento de Dados
@@ -97,16 +103,22 @@ assign mPC					= wPC;
 assign mInstr				= wInstr;
 assign mRead1				= wRead1;
 assign mRead2				= wRead2;
-//assign mFPRead1         = wFPRead1;
-//assign mFPRead2         = wFPRead2;
 assign mRegWrite			= wRegWriteFinal;
 assign mULA					= wALUresult;
-//assign mFPULA           = wFPULAresult;
 assign mDebug				= 32'h000ACE10;	// Ligar onde for preciso	
 assign mRegDisp			= wRegDisp;
 assign mVGARead			= wVGARead;
 assign wRegDispSelect 	= mRegDispSelect;
 assign wVGASelect 		= mVGASelect;
+
+`ifdef RV32IMF
+assign   mFPRead1			= wFPRead1;
+assign   mFPRead2			= wFPRead2;
+assign   mFPALUResult	= wFPALUresult;
+assign   mFPALUOrigA		= wOrigFPAULA;
+assign   mFPALUOrigB		= wOrigFPBULA;
+
+`endif
 
 
 // ****************************************************** 
@@ -252,7 +264,7 @@ Control_UNI CONTROL0 (
 	 .oMemRead(wCMemRead),
     .oALUControl(wCALUControl),
     .oOrigPC(wCOrigPC)
-	 `ifdef RVIMF
+	 `ifdef RV32IMF
 	 ,
 	 .oFPALUControl(wCFPALUControl),
 	 .oFPToMem(wCFPToMem),

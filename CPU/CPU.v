@@ -20,7 +20,16 @@ module CPU (
 	 output wire [31:0] mRead1,
 	 output wire [31:0] mRead2,
 	 output wire [31:0] mRegWrite,
-	 output wire [31:0] mULA,	 
+	 output wire [31:0] mULA,
+	 
+	 `ifdef RV32IMF
+	 output wire [31:0] mFPRead1,
+	 output wire [31:0] mFPRead2,
+	 output wire [31:0] mFPULAResult,
+	 output wire [31:0] mFPULAOrigA,
+	 output wire [31:0] mFPULAOrigB,
+	 
+	 `endif
 	 
     //barramentos de dados
     output wire        DwReadEnable, DwWriteEnable,
@@ -66,6 +75,14 @@ Datapath_UNI Processor (
 	 .mRead2(mRead2),
 	 .mRegWrite(mRegWrite),
 	 .mULA(mULA),
+	 
+	 `ifdef RV32IMF
+	 .mFPRead1(mFPRead1),
+	 .mFPRead2(mFPRead2),
+	 .mFPALUResult(mFPALUResult),
+	 .mFPALUOrigA(mFPALUOrigA),
+	 .mFPALUOrigB(mFPALUOrigB),
+	 `endif
 	 
     // Barramento de dados
     .DwReadEnable(DwReadEnable), .DwWriteEnable(DwWriteEnable),

@@ -10,7 +10,7 @@
 //`define RV32I
 //`define RV32IM
 `define RV32IMF
-
+`define RV32M
 
 `ifndef PARAM
 	`include "Parametros.v"
@@ -215,7 +215,15 @@ wire [31:0] mVGARead;
 wire [31:0] mRead1;
 wire [31:0] mRead2;
 wire [31:0] mRegWrite;
-wire [31:0] mULA;	
+wire [31:0] mULA;
+
+`ifdef RV32IMF
+wire [31:0] mFPRead1;
+wire [31:0] mFPRead2;
+wire [31:0] mFPULAResult;
+wire [31:0] mFPULAOrigA;
+wire [31:0] mFPULAOrigB;
+`endif	
 
 // *************** Controle do Clock ******************************************* 
 wire CLK, oCLK_50, oCLK_25, oCLK_100, oCLK_150, oCLK_200, oCLK_27, oCLK_18;
@@ -310,6 +318,14 @@ CPU CPU0 (
 	 .mRead2(mRead2),
 	 .mRegWrite(mRegWrite),
 	 .mULA(mULA),
+	 
+	 `ifdef RV32IMF
+	 .mFPRead1(mFPRead1),
+	 .mFPRead2(mFPRead2),
+	 .mFPALUResult(mFPALUResult),
+	 .mFPALUOrigA(mFPALUOrigA),
+	 .mFPALUOrigB(mFPALUOrigB),
+	 `endif
 	 
     // Barramento Dados
     .DwReadEnable(DReadEnable), 
